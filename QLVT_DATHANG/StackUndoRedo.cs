@@ -13,116 +13,85 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLVT_DATHANG
 {
+    public class UndoRedoItem
+    {
+        public string ActionType { get; set; } // Add, Delete, Update
+        public DataRowView DataRow { get; set; }
+        public int Index { get; set; }
+    }
+
     internal class StackUndoRedo
     {
-        private Stack Data;
-
-        private Stack Undo;
-
-        private Stack Index;
-
+        private Stack<UndoRedoItem> DataStack;
         private BindingSource Bds;
 
         public StackUndoRedo(BindingSource bds)
         {
             this.Bds = bds;
-
-            this.Data = new Stack();
-
-            this.Undo = new Stack();
-
-            this.Index = new Stack();
+            this.DataStack = new Stack<UndoRedoItem>();
         }
 
-        public StackUndoRedo()
+        public void InsertStack(DataRowView dataRowView, string type, int index)
         {
-            this.Data = new Stack();
-
-            this.Undo = new Stack();
-
-            this.Index = new Stack();
-        }
-
-        public void setBds(BindingSource bds)
-        {
-            this.Bds = bds;
-        }
-
-        public void InsertStack(DataRowView dataRowView, String type, int index)
-        {
-            Data.Push(CopyDataRowView(dataRowView));
-            Index.Push(index);
-            Undo.Push(type);
-        }
-
-        public void DoUndo()
-        {
-            Console.WriteLine(Undo.Count);
-            if (Undo.Count > 0 && Index.Count > 0)
+            UndoRedoItem item = new UndoRedoItem
             {
-                int index = (int)Index.Pop();
-                if(index != -1)
-                    Bds.Position = index;
-                String Type = (string)Undo.Pop();
-                switch (Type)
+                ActionType = type,
+                DataRow = dataRowView,
+                Index = index
+            };
+            DataStack.Push(item);
+        }
+
+        public int DoUndo()
+        {
+            if (DataStack.Count > 0)
+            {
+                UndoRedoItem item = DataStack.Pop();
+                int index = item.Index;
+                switch (item.ActionType)
                 {
                     case "Add":
-                        Bds.RemoveCurrent();
-                        Bds.EndEdit();
-                        break;
+
+                        Bds.RemoveAt(index);
+
+                        return index;
+
                     case "Delete":
+
                         Bds.AddNew();
-                        DataRowView currentRow = (DataRowView)Bds.Current;
-                        currentRow.BeginEdit();
-
-                        DataRowView copiedRow = (DataRowView)Data.Pop();
-
-                        for (int i = 0; i < currentRow.Row.ItemArray.Length; i++)
-                            currentRow.Row[i] = copiedRow.Row[i];
-
-                        currentRow.EndEdit();
-                        Bds.EndEdit();
-                        break;
-                    case "Update Old":
                         DataRowView CurrentRow = (DataRowView)Bds.Current;
+
                         CurrentRow.BeginEdit();
 
-                        DataRowView CopiedRow = (DataRowView)Data.Pop();
-                        for (int i = 1; i < CurrentRow.Row.ItemArray.Length; i++)
+                        DataRowView CopiedRow = item.DataRow;
+
+                        for (int i = 0; i < CurrentRow.Row.ItemArray.Length; i++)
                             CurrentRow.Row[i] = CopiedRow.Row[i];
 
                         CurrentRow.EndEdit();
-                        Bds.EndEdit();
-                        break;
+
+                        return index;
+
+                    case "Update":
+
+                        DataRowView currentRow = (DataRowView)Bds[item.Index];
+                        currentRow.BeginEdit();
+
+                        DataRowView copiedRow = item.DataRow;
+
+                        for (int i = 1; i < currentRow.Row.ItemArray.Length; i++)
+                            currentRow.Row[i] = copiedRow.Row[i];
+
+                        currentRow.EndEdit();
+
+                        return index;
                 }
             }
-            else
-            {
-                MessageBox.Show("Không còn dữ liệu để hoàn tác!");
-            }
+
+            return -1;
         }
 
-        private DataRowView CopyDataRowView(DataRowView original)
-        {
-            // Tạo một DataTable mới để chứa dữ liệu của original
-            DataTable tempTable = original.DataView.Table.Clone();
 
-            // Tạo một dòng mới trong DataTable
-            DataRow tempRow = tempTable.NewRow();
-
-            // Sao chép dữ liệu từ original sang tempRow
-            foreach (DataColumn column in tempTable.Columns)
-            {
-                tempRow[column.ColumnName] = original.Row[column.ColumnName];
-            }
-
-            // Thêm dòng mới vào DataTable
-            tempTable.Rows.Add(tempRow);
-
-            // Tạo một DataRowView từ dòng mới trong DataTable
-            DataView tempDataView = new DataView(tempTable);
-            DataRowView clonedRow = tempDataView[0];
-            return clonedRow;
-        }
     }
+
 }

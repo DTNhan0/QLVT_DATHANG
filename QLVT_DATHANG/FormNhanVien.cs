@@ -19,6 +19,7 @@ using DevExpress.Xpo.DB.Helpers;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Threading;
 using DevExpress.Utils.Extensions;
+using DevExpress.Utils.Helpers;
 
 namespace QLVT_DATHANG
 {
@@ -29,7 +30,8 @@ namespace QLVT_DATHANG
         int Index = 0;
         String MaCN = "";
 
-        StackUndoRedo UndoRedo = new StackUndoRedo();
+        StackUndoRedo UndoRedo;
+        DataRowView TempData = null;
 
         public FormNhanVien()
         {
@@ -61,7 +63,11 @@ namespace QLVT_DATHANG
 
             CheckLoginPermission();
             BoGhiBtn.Enabled = false;
-            UndoRedo.setBds(bdsNV);
+
+            UndoRedo = new StackUndoRedo(bdsNV);
+
+            NhanVienGc_Click(sender, e);
+
             HoanTacBtn.Enabled = false;
         }
 
@@ -133,7 +139,7 @@ namespace QLVT_DATHANG
                 this.NhanVienGc.Focus();
 
                 BoGhiBtn.Enabled = false;
-                UndoRedo.setBds(bdsNV);
+
             }
             catch (Exception ex)
             {
@@ -204,7 +210,7 @@ namespace QLVT_DATHANG
                     {
                         DataRowView currentRow = (DataRowView)bdsNV.Current;
 
-                        UndoRedo.InsertStack(currentRow, "Delete", bdsNV.Position);
+                        UndoRedo.InsertStack(CopyDataRowView(currentRow), "Delete", bdsNV.Position);
 
                         bdsNV.RemoveCurrent();
                         bdsNV.EndEdit();
@@ -212,11 +218,26 @@ namespace QLVT_DATHANG
                         Index = bdsNV.Position;
 
                         this.HoanTacBtn.Enabled = true;
+                        this.HoanTacBtn.Enabled = true;
                         this.nhanVienTableAdapter.Update(this.DataSet.NhanVien);
 
                         MessageBox.Show("Xóa dữ liệu thành công!");
                         HoanTacBtn.Enabled = true;
 
+                        LamMoiBtn.PerformClick();
+                        while (true)
+                        {
+                            using (SqlDataReader reader = Program.ExecSqlDataReader("EXEC [dbo].[sp_TimMaNV] '" + MaNV + "'"))
+                            {
+                                if (reader != null && reader.HasRows)
+                                        Thread.Sleep(100);
+                                else
+                                {
+                                    MessageBox.Show("Cơ sở dữ liệu đã cập nhật lại thông tin!", "Thông báo", MessageBoxButtons.OK);
+                                    break;
+                                }
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -228,17 +249,6 @@ namespace QLVT_DATHANG
                 else
                 {
                     MessageBox.Show("Không có dữ liệu để xóa.");
-                }
-            }
-
-            while (true)
-            {
-                using (SqlDataReader reader = Program.ExecSqlDataReader("EXEC [dbo].[sp_TimMaNV] '" + MaNV + "'"))
-                {
-                    if (reader != null && reader.HasRows)
-                        MessageBox.Show("Bạn vui lòng đợi cơ sở dữ liệu cập nhật lại thông tin!", "Thông báo", MessageBoxButtons.OK);
-                    else
-                        break;
                 }
             }
 
@@ -290,9 +300,12 @@ namespace QLVT_DATHANG
                         using (SqlDataReader reader = Program.ExecSqlDataReader("EXEC [dbo].[sp_TimMaNV] '" + MaNV + "'"))
                         {
                             if (reader == null || !reader.HasRows)
-                                MessageBox.Show("Bạn vui lòng đợi cơ sở dữ liệu cập nhật lại thông tin!", "Thông báo", MessageBoxButtons.OK);
+                                Thread.Sleep(100);
                             else
+                            {
+                                MessageBox.Show("Cơ sở dữ liệu đã cập nhật lại thông tin!", "Thông báo", MessageBoxButtons.OK);
                                 break;
+                            }
                         }
                     }
 
@@ -307,6 +320,8 @@ namespace QLVT_DATHANG
             }
             else
             {
+                DataRowView OldData = TempData;
+
                 if (MessageBox.Show("Bạn có chắc chắn muốn cập nhật nhân viên có mã: " + MaNVTb.Text + " không?", "Thông báo",
                     MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
@@ -344,10 +359,9 @@ namespace QLVT_DATHANG
                             }
                         }
 
-                        UndoRedo.InsertStack((DataRowView)bdsNV.Current, "Update Old", Index);
+                        UndoRedo.InsertStack(OldData, "Update", Index);
 
                         DataRowView currentRow = (DataRowView)bdsNV.Current;
-
                         this.Validate();
                         bdsNV.EndEdit();
                         this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -567,9 +581,19 @@ namespace QLVT_DATHANG
 
         private void HoanTacBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            UndoRedo.DoUndo();
-            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.nhanVienTableAdapter.Update(this.DataSet.NhanVien);
+            int index = UndoRedo.DoUndo();
+            if(index != -1)
+            {
+                this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.nhanVienTableAdapter.Update(this.DataSet.NhanVien);
+                LamMoiBtn.PerformClick();
+                bdsNV.Position = index;
+            }
+            else
+            {
+                MessageBox.Show("Không còn dữ liệu để hoàn tác!", "Thông báo");
+            }
+
         }
 
         private void TextBoxClicked(object sender, EventArgs e)
@@ -585,7 +609,39 @@ namespace QLVT_DATHANG
             this.nhanVienTableAdapter.Fill(this.DataSet.NhanVien);
             this.NhanVienGc.Enabled = true;
             bdsNV.Position = Index;
+            ThemBtn.Enabled = true;
+            XoaBtn.Enabled = true;
+            ChuyenCNBtn.Enabled = true;
             this.NhanVienGc.Focus();
+        }
+
+        public DataRowView CopyDataRowView(DataRowView original)
+        {
+            // Tạo một DataTable mới để chứa dữ liệu của original
+            DataTable tempTable = original.DataView.Table.Clone();
+
+            // Tạo một dòng mới trong DataTable
+            DataRow tempRow = tempTable.NewRow();
+
+            // Sao chép dữ liệu từ original sang tempRow
+            foreach (DataColumn column in tempTable.Columns)
+            {
+                tempRow[column.ColumnName] = original.Row[column.ColumnName];
+            }
+
+            // Thêm dòng mới vào DataTable
+            tempTable.Rows.Add(tempRow);
+
+            // Tạo một DataRowView từ dòng mới trong DataTable
+            DataView tempDataView = new DataView(tempTable);
+            DataRowView clonedRow = tempDataView[0];
+            return clonedRow;
+        }
+
+        private void NhanVienGc_Click(object sender, EventArgs e)
+        {
+            if ((DataRowView)bdsNV.Current != null)
+                TempData = CopyDataRowView((DataRowView)bdsNV.Current);
         }
     }
 }

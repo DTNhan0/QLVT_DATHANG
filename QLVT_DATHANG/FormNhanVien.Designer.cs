@@ -44,11 +44,11 @@
             this.ThemBtn = new DevExpress.XtraBars.BarButtonItem();
             this.XoaBtn = new DevExpress.XtraBars.BarButtonItem();
             this.GhiBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.BoGhiBtn = new DevExpress.XtraBars.BarButtonItem();
             this.HoanTacBtn = new DevExpress.XtraBars.BarButtonItem();
             this.LamMoiBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ChuyenCNBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ThoatBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.BoGhiBtn = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -59,6 +59,7 @@
             this.skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.panelChiNhanh = new DevExpress.XtraEditors.PanelControl();
             this.ChiNhanhCb = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -225,8 +226,9 @@
             this.skinBarSubItem1,
             this.barSubItem1,
             this.barButtonItem1,
-            this.BoGhiBtn});
-            this.BarManager.MaxItemId = 13;
+            this.BoGhiBtn,
+            this.barButtonItem2});
+            this.BarManager.MaxItemId = 14;
             this.BarManager.StatusBar = this.bar3;
             // 
             // Bar
@@ -274,6 +276,16 @@
             this.GhiBtn.Size = new System.Drawing.Size(90, 0);
             this.GhiBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.GhiBtn_ItemClick);
             // 
+            // BoGhiBtn
+            // 
+            this.BoGhiBtn.Caption = "Bỏ ghi";
+            this.BoGhiBtn.Id = 12;
+            this.BoGhiBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BoGhiBtn.ImageOptions.Image")));
+            this.BoGhiBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BoGhiBtn.ImageOptions.LargeImage")));
+            this.BoGhiBtn.Name = "BoGhiBtn";
+            this.BoGhiBtn.Size = new System.Drawing.Size(95, 0);
+            this.BoGhiBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BoGhiBtn_ItemClick);
+            // 
             // HoanTacBtn
             // 
             this.HoanTacBtn.Caption = "Hoàn tác";
@@ -309,16 +321,6 @@
             this.ThoatBtn.Name = "ThoatBtn";
             this.ThoatBtn.Size = new System.Drawing.Size(90, 0);
             this.ThoatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ThoatBtn_ItemClick);
-            // 
-            // BoGhiBtn
-            // 
-            this.BoGhiBtn.Caption = "Bỏ ghi";
-            this.BoGhiBtn.Id = 12;
-            this.BoGhiBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BoGhiBtn.ImageOptions.Image")));
-            this.BoGhiBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BoGhiBtn.ImageOptions.LargeImage")));
-            this.BoGhiBtn.Name = "BoGhiBtn";
-            this.BoGhiBtn.Size = new System.Drawing.Size(95, 0);
-            this.BoGhiBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BoGhiBtn_ItemClick);
             // 
             // bar3
             // 
@@ -396,6 +398,12 @@
             this.barButtonItem1.Id = 11;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "CheckDataStack";
+            this.barButtonItem2.Id = 13;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
             // panelChiNhanh
             // 
             this.panelChiNhanh.Controls.Add(this.ChiNhanhCb);
@@ -456,6 +464,7 @@
             this.NhanVienGc.TabIndex = 6;
             this.NhanVienGc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.NhanVienGc.Click += new System.EventHandler(this.NhanVienGc_Click);
             // 
             // gridView1
             // 
@@ -559,7 +568,7 @@
             this.MaNVTb.Name = "MaNVTb";
             this.MaNVTb.Size = new System.Drawing.Size(55, 27);
             this.MaNVTb.TabIndex = 1;
-            this.MaNVTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.MaNVTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // LuongTxtE
             // 
@@ -575,7 +584,7 @@
             this.LuongTxtE.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.LuongTxtE.Size = new System.Drawing.Size(220, 26);
             this.LuongTxtE.TabIndex = 3;
-            this.LuongTxtE.Click += new System.EventHandler(this.TextBoxClicked);
+            this.LuongTxtE.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // HoTb
             // 
@@ -585,7 +594,7 @@
             this.HoTb.Name = "HoTb";
             this.HoTb.Size = new System.Drawing.Size(156, 27);
             this.HoTb.TabIndex = 7;
-            this.HoTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.HoTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // TenTb
             // 
@@ -595,7 +604,7 @@
             this.TenTb.Name = "TenTb";
             this.TenTb.Size = new System.Drawing.Size(145, 27);
             this.TenTb.TabIndex = 9;
-            this.TenTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.TenTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // panelNhapXuat
             // 
@@ -631,7 +640,7 @@
             this.TrangThaiXoaCb.Size = new System.Drawing.Size(104, 24);
             this.TrangThaiXoaCb.TabIndex = 16;
             this.TrangThaiXoaCb.UseVisualStyleBackColor = true;
-            this.TrangThaiXoaCb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.TrangThaiXoaCb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // SoCmndTb
             // 
@@ -641,7 +650,7 @@
             this.SoCmndTb.Name = "SoCmndTb";
             this.SoCmndTb.Size = new System.Drawing.Size(262, 27);
             this.SoCmndTb.TabIndex = 14;
-            this.SoCmndTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.SoCmndTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // NgaySinhDte
             // 
@@ -663,7 +672,7 @@
             this.NgaySinhDte.Properties.MinValue = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.NgaySinhDte.Size = new System.Drawing.Size(100, 26);
             this.NgaySinhDte.TabIndex = 12;
-            this.NgaySinhDte.Click += new System.EventHandler(this.TextBoxClicked);
+            this.NgaySinhDte.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // DiaChiTb
             // 
@@ -673,7 +682,7 @@
             this.DiaChiTb.Name = "DiaChiTb";
             this.DiaChiTb.Size = new System.Drawing.Size(262, 27);
             this.DiaChiTb.TabIndex = 11;
-            this.DiaChiTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.DiaChiTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // MaCNTb
             // 
@@ -684,7 +693,7 @@
             this.MaCNTb.Name = "MaCNTb";
             this.MaCNTb.Size = new System.Drawing.Size(156, 27);
             this.MaCNTb.TabIndex = 10;
-            this.MaCNTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.MaCNTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // bdsDH
             // 
@@ -806,5 +815,6 @@
         private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem BoGhiBtn;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }
