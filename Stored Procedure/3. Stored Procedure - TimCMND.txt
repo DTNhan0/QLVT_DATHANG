@@ -1,0 +1,16 @@
+CREATE PROCEDURE sp_TimCMND
+    @X nvarchar(20)
+AS
+ IF  exists(select SOCMND from  dbo.NHANVIEN where SOCMND =@X)
+ BEGIN
+   	SELECT *
+   	FROM NHANVIEN
+	WHERE SOCMND =@X
+ END
+ ELSE
+  IF  exists(select SOCMND from  LINK0.QLVT_DATHANG.dbo.NHANVIEN where SOCMND =@X)
+  BEGIN
+   	SELECT *
+   	FROM LINK0.QLVT_DATHANG.dbo.NHANVIEN
+	WHERE SOCMND =@X
+  END

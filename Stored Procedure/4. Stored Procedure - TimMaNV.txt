@@ -1,0 +1,16 @@
+CREATE PROCEDURE [dbo].[sp_TimMaNV]
+    @X int
+AS
+ IF  exists(select MANV from  dbo.NHANVIEN where MANV =@X)
+ BEGIN
+   	SELECT *
+   	FROM NHANVIEN
+	WHERE MANV =@X
+ END
+ ELSE
+  IF  exists(select MANV from  LINK0.QLVT_DATHANG.dbo.NHANVIEN where MANV =@X)
+  BEGIN
+   	SELECT *
+   	FROM LINK0.QLVT_DATHANG.dbo.NHANVIEN
+	WHERE MANV =@X
+  END
