@@ -116,7 +116,17 @@ namespace QLVT_DATHANG
 
         private void VatTuBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            Form form = this.CheckExists(typeof(FormVatTu));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                FormVatTu formVatTu = new FormVatTu();
+                formVatTu.MdiParent = this;
+                formVatTu.Show();
+            }
         }
     }
 }

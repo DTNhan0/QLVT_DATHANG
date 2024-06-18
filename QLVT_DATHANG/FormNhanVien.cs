@@ -77,6 +77,7 @@ namespace QLVT_DATHANG
             {
                 case "CONGTY":
                     setEnableOptions(false);
+                    ChiNhanhCb.Enabled = true;
                     break;
                 case "CHINHANH":
                 case "USER":

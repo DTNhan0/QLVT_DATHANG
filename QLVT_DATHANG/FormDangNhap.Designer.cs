@@ -103,6 +103,7 @@
             // 
             this.MatKhauTf.Location = new System.Drawing.Point(92, 129);
             this.MatKhauTf.Name = "MatKhauTf";
+            this.MatKhauTf.PasswordChar = '*';
             this.MatKhauTf.Size = new System.Drawing.Size(273, 27);
             this.MatKhauTf.TabIndex = 5;
             // 
