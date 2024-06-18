@@ -42,7 +42,7 @@ namespace QLVT_DATHANG
             this.TaoTKBtn = new DevExpress.XtraBars.BarButtonItem();
             this.DangXuatBtn = new DevExpress.XtraBars.BarButtonItem();
             this.NhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.VatTuBtn = new DevExpress.XtraBars.BarButtonItem();
             this.KhoHangBtn = new DevExpress.XtraBars.BarButtonItem();
             this.LapPhieuBsi = new DevExpress.XtraBars.BarSubItem();
             this.DonDatBtn = new DevExpress.XtraBars.BarButtonItem();
@@ -90,7 +90,7 @@ namespace QLVT_DATHANG
             this.TaoTKBtn,
             this.DangXuatBtn,
             this.NhanVienBtn,
-            this.barButtonItem2,
+            this.VatTuBtn,
             this.KhoHangBtn,
             this.LapPhieuBsi,
             this.DonDatBtn,
@@ -103,8 +103,8 @@ namespace QLVT_DATHANG
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.PageHeThong,
-            this.PageBaoCao,
-            this.PageNhapXuat});
+            this.PageNhapXuat,
+            this.PageBaoCao});
             this.ribbon.Size = new System.Drawing.Size(1181, 158);
             // 
             // DangNhapBtn
@@ -146,14 +146,15 @@ namespace QLVT_DATHANG
             this.NhanVienBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.NhanVienBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.NhanVienBtn_ItemClick);
             // 
-            // barButtonItem2
+            // VatTuBtn
             // 
-            this.barButtonItem2.Caption = "VẬT TƯ";
-            this.barButtonItem2.Id = 6;
-            this.barButtonItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.barButtonItem2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.VatTuBtn.Caption = "VẬT TƯ";
+            this.VatTuBtn.Id = 6;
+            this.VatTuBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("VatTuBtn.ImageOptions.Image")));
+            this.VatTuBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("VatTuBtn.ImageOptions.LargeImage")));
+            this.VatTuBtn.Name = "VatTuBtn";
+            this.VatTuBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.VatTuBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.VatTuBtn_ItemClick);
             // 
             // KhoHangBtn
             // 
@@ -287,7 +288,7 @@ namespace QLVT_DATHANG
             // VatTuRbGrp
             // 
             this.VatTuRbGrp.AllowTextClipping = false;
-            this.VatTuRbGrp.ItemLinks.Add(this.barButtonItem2);
+            this.VatTuRbGrp.ItemLinks.Add(this.VatTuBtn);
             this.VatTuRbGrp.Name = "VatTuRbGrp";
             this.VatTuRbGrp.Text = "---Vật tư---";
             // 
@@ -393,7 +394,7 @@ namespace QLVT_DATHANG
         private DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel repositoryItemHypertextLabel2;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private BarButtonItem NhanVienBtn;
-        private BarButtonItem barButtonItem2;
+        private BarButtonItem VatTuBtn;
         private BarButtonItem KhoHangBtn;
         private RibbonPageGroup NhanVienRbGrp;
         private RibbonPageGroup TaoTKRbGrp;

@@ -113,5 +113,10 @@ namespace QLVT_DATHANG
         {
             this.Close();
         }
+
+        private void VatTuBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
