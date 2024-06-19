@@ -95,6 +95,25 @@ namespace QLVT_DATHANG
             }
         }
 
+        public static int ExecSqlScalar(String strLenh)
+        {
+            SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
+            sqlcmd.CommandType = CommandType.Text;
+            if (Program.conn.State == ConnectionState.Closed)
+                Program.conn.Open();
+            try
+            {
+                object result = sqlcmd.ExecuteScalar();
+                return Convert.ToInt32(result);
+            }
+            catch (SqlException ex)
+            {
+                Program.conn.Close();
+                MessageBox.Show(ex.Message);
+                return -1;
+            }
+        }
+
 
         public static DataTable ExecSqlDataTable(String cmd)
         {

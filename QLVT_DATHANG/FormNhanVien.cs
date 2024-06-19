@@ -68,7 +68,6 @@ namespace QLVT_DATHANG
 
             NhanVienGc_Click(sender, e);
 
-            HoanTacBtn.Enabled = false;
         }
 
         public void CheckLoginPermission()
@@ -122,7 +121,6 @@ namespace QLVT_DATHANG
             {
                 this.Close();
             }
-
         }
 
         private void LamMoiBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -614,6 +612,7 @@ namespace QLVT_DATHANG
             XoaBtn.Enabled = true;
             ChuyenCNBtn.Enabled = true;
             this.NhanVienGc.Focus();
+            HoanTacBtn.Enabled = true;
         }
 
         public DataRowView CopyDataRowView(DataRowView original)

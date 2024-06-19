@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label mAVTLabel;
-            System.Windows.Forms.Label tENVTLabel;
             System.Windows.Forms.Label dVTLabel;
             System.Windows.Forms.Label sOLUONGTONLabel;
+            System.Windows.Forms.Label tENVTLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVatTu));
             this.BarManager = new DevExpress.XtraBars.BarManager(this.components);
             this.Bar = new DevExpress.XtraBars.Bar();
@@ -75,14 +75,14 @@
             this.colDVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOLUONGTON = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelNhapXuat = new DevExpress.XtraEditors.PanelControl();
-            this.SoLgTonSpE = new DevExpress.XtraEditors.SpinEdit();
-            this.DvtTb = new System.Windows.Forms.TextBox();
             this.TenVTTb = new System.Windows.Forms.TextBox();
+            this.SoLgTonTb = new System.Windows.Forms.TextBox();
+            this.DvtTb = new System.Windows.Forms.TextBox();
             this.MaVTTb = new System.Windows.Forms.TextBox();
             mAVTLabel = new System.Windows.Forms.Label();
-            tENVTLabel = new System.Windows.Forms.Label();
             dVTLabel = new System.Windows.Forms.Label();
             sOLUONGTONLabel = new System.Windows.Forms.Label();
+            tENVTLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BarManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelChiNhanh)).BeginInit();
             this.panelChiNhanh.SuspendLayout();
@@ -95,7 +95,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelNhapXuat)).BeginInit();
             this.panelNhapXuat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SoLgTonSpE.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mAVTLabel
@@ -106,15 +105,6 @@
             mAVTLabel.Size = new System.Drawing.Size(38, 13);
             mAVTLabel.TabIndex = 0;
             mAVTLabel.Text = "MAVT:";
-            // 
-            // tENVTLabel
-            // 
-            tENVTLabel.AutoSize = true;
-            tENVTLabel.Location = new System.Drawing.Point(71, 90);
-            tENVTLabel.Name = "tENVTLabel";
-            tENVTLabel.Size = new System.Drawing.Size(42, 13);
-            tENVTLabel.TabIndex = 2;
-            tENVTLabel.Text = "TENVT:";
             // 
             // dVTLabel
             // 
@@ -128,11 +118,20 @@
             // sOLUONGTONLabel
             // 
             sOLUONGTONLabel.AutoSize = true;
-            sOLUONGTONLabel.Location = new System.Drawing.Point(293, 91);
+            sOLUONGTONLabel.Location = new System.Drawing.Point(293, 90);
             sOLUONGTONLabel.Name = "sOLUONGTONLabel";
             sOLUONGTONLabel.Size = new System.Drawing.Size(80, 13);
             sOLUONGTONLabel.TabIndex = 6;
             sOLUONGTONLabel.Text = "SOLUONGTON:";
+            // 
+            // tENVTLabel
+            // 
+            tENVTLabel.AutoSize = true;
+            tENVTLabel.Location = new System.Drawing.Point(71, 90);
+            tENVTLabel.Name = "tENVTLabel";
+            tENVTLabel.Size = new System.Drawing.Size(42, 13);
+            tENVTLabel.TabIndex = 7;
+            tENVTLabel.Text = "TENVT:";
             // 
             // BarManager
             // 
@@ -186,6 +185,7 @@
             this.ThemBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ThemBtn.ImageOptions.SvgImage")));
             this.ThemBtn.Name = "ThemBtn";
             this.ThemBtn.Size = new System.Drawing.Size(90, 0);
+            this.ThemBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ThemBtn_ItemClick);
             // 
             // XoaBtn
             // 
@@ -194,6 +194,7 @@
             this.XoaBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("XoaBtn.ImageOptions.SvgImage")));
             this.XoaBtn.Name = "XoaBtn";
             this.XoaBtn.Size = new System.Drawing.Size(90, 0);
+            this.XoaBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.XoaBtn_ItemClick);
             // 
             // GhiBtn
             // 
@@ -202,6 +203,7 @@
             this.GhiBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("GhiBtn.ImageOptions.SvgImage")));
             this.GhiBtn.Name = "GhiBtn";
             this.GhiBtn.Size = new System.Drawing.Size(90, 0);
+            this.GhiBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.GhiBtn_ItemClick);
             // 
             // BoGhiBtn
             // 
@@ -211,6 +213,7 @@
             this.BoGhiBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("BoGhiBtn.ImageOptions.LargeImage")));
             this.BoGhiBtn.Name = "BoGhiBtn";
             this.BoGhiBtn.Size = new System.Drawing.Size(95, 0);
+            this.BoGhiBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BoGhiBtn_ItemClick);
             // 
             // HoanTacBtn
             // 
@@ -219,6 +222,7 @@
             this.HoanTacBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("HoanTacBtn.ImageOptions.SvgImage")));
             this.HoanTacBtn.Name = "HoanTacBtn";
             this.HoanTacBtn.Size = new System.Drawing.Size(105, 0);
+            this.HoanTacBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.HoanTacBtn_ItemClick);
             // 
             // LamMoiBtn
             // 
@@ -227,6 +231,7 @@
             this.LamMoiBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("LamMoiBtn.ImageOptions.SvgImage")));
             this.LamMoiBtn.Name = "LamMoiBtn";
             this.LamMoiBtn.Size = new System.Drawing.Size(105, 0);
+            this.LamMoiBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.LamMoiBtn_ItemClick);
             // 
             // ThoatBtn
             // 
@@ -235,6 +240,7 @@
             this.ThoatBtn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ThoatBtn.ImageOptions.SvgImage")));
             this.ThoatBtn.Name = "ThoatBtn";
             this.ThoatBtn.Size = new System.Drawing.Size(90, 0);
+            this.ThoatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ThoatBtn_ItemClick);
             // 
             // bar3
             // 
@@ -345,6 +351,7 @@
             this.ChiNhanhCb.Name = "ChiNhanhCb";
             this.ChiNhanhCb.Size = new System.Drawing.Size(351, 27);
             this.ChiNhanhCb.TabIndex = 1;
+            this.ChiNhanhCb.SelectedIndexChanged += new System.EventHandler(this.ChiNhanhCb_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -424,6 +431,7 @@
             this.VatTuGc.TabIndex = 10;
             this.VatTuGc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.VatTuGc.Click += new System.EventHandler(this.VatTuGc_Click);
             // 
             // gridView1
             // 
@@ -469,12 +477,12 @@
             // 
             // panelNhapXuat
             // 
-            this.panelNhapXuat.Controls.Add(sOLUONGTONLabel);
-            this.panelNhapXuat.Controls.Add(this.SoLgTonSpE);
-            this.panelNhapXuat.Controls.Add(dVTLabel);
-            this.panelNhapXuat.Controls.Add(this.DvtTb);
             this.panelNhapXuat.Controls.Add(tENVTLabel);
             this.panelNhapXuat.Controls.Add(this.TenVTTb);
+            this.panelNhapXuat.Controls.Add(sOLUONGTONLabel);
+            this.panelNhapXuat.Controls.Add(this.SoLgTonTb);
+            this.panelNhapXuat.Controls.Add(dVTLabel);
+            this.panelNhapXuat.Controls.Add(this.DvtTb);
             this.panelNhapXuat.Controls.Add(mAVTLabel);
             this.panelNhapXuat.Controls.Add(this.MaVTTb);
             this.panelNhapXuat.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -483,22 +491,24 @@
             this.panelNhapXuat.Size = new System.Drawing.Size(1256, 159);
             this.panelNhapXuat.TabIndex = 11;
             // 
-            // SoLgTonSpE
+            // TenVTTb
             // 
-            this.SoLgTonSpE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVT, "SOLUONGTON", true));
-            this.SoLgTonSpE.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.SoLgTonSpE.Location = new System.Drawing.Point(379, 88);
-            this.SoLgTonSpE.MenuManager = this.BarManager;
-            this.SoLgTonSpE.Name = "SoLgTonSpE";
-            this.SoLgTonSpE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.SoLgTonSpE.Size = new System.Drawing.Size(100, 20);
-            this.SoLgTonSpE.TabIndex = 7;
-            this.SoLgTonSpE.Click += new System.EventHandler(this.TextBoxClicked);
+            this.TenVTTb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsVT, "TENVT", true));
+            this.TenVTTb.Location = new System.Drawing.Point(119, 87);
+            this.TenVTTb.Name = "TenVTTb";
+            this.TenVTTb.Size = new System.Drawing.Size(100, 21);
+            this.TenVTTb.TabIndex = 8;
+            this.TenVTTb.Enter += new System.EventHandler(this.TextBoxClicked);
+            // 
+            // SoLgTonTb
+            // 
+            this.SoLgTonTb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsVT, "SOLUONGTON", true));
+            this.SoLgTonTb.Location = new System.Drawing.Point(379, 87);
+            this.SoLgTonTb.Name = "SoLgTonTb";
+            this.SoLgTonTb.Size = new System.Drawing.Size(100, 21);
+            this.SoLgTonTb.TabIndex = 7;
+            this.SoLgTonTb.TextChanged += new System.EventHandler(this.SoLgTonTb_TextChanged);
+            this.SoLgTonTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // DvtTb
             // 
@@ -507,16 +517,7 @@
             this.DvtTb.Name = "DvtTb";
             this.DvtTb.Size = new System.Drawing.Size(100, 21);
             this.DvtTb.TabIndex = 5;
-            this.DvtTb.Click += new System.EventHandler(this.TextBoxClicked);
-            // 
-            // TenVTTb
-            // 
-            this.TenVTTb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsVT, "TENVT", true));
-            this.TenVTTb.Location = new System.Drawing.Point(119, 87);
-            this.TenVTTb.Name = "TenVTTb";
-            this.TenVTTb.Size = new System.Drawing.Size(100, 21);
-            this.TenVTTb.TabIndex = 3;
-            this.TenVTTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.DvtTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // MaVTTb
             // 
@@ -526,7 +527,7 @@
             this.MaVTTb.Name = "MaVTTb";
             this.MaVTTb.Size = new System.Drawing.Size(100, 21);
             this.MaVTTb.TabIndex = 1;
-            this.MaVTTb.Click += new System.EventHandler(this.TextBoxClicked);
+            this.MaVTTb.Enter += new System.EventHandler(this.TextBoxClicked);
             // 
             // FormVatTu
             // 
@@ -557,7 +558,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelNhapXuat)).EndInit();
             this.panelNhapXuat.ResumeLayout(false);
             this.panelNhapXuat.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SoLgTonSpE.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -601,14 +601,14 @@
         private DataSetTableAdapters.CTDDHTableAdapter cTDDHTableAdapter;
         private DevExpress.XtraGrid.GridControl VatTuGc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.PanelControl panelNhapXuat;
+        private System.Windows.Forms.TextBox DvtTb;
+        private System.Windows.Forms.TextBox MaVTTb;
+        private System.Windows.Forms.TextBox SoLgTonTb;
         private DevExpress.XtraGrid.Columns.GridColumn colMAVT;
         private DevExpress.XtraGrid.Columns.GridColumn colTENVT;
         private DevExpress.XtraGrid.Columns.GridColumn colDVT;
         private DevExpress.XtraGrid.Columns.GridColumn colSOLUONGTON;
-        private DevExpress.XtraEditors.PanelControl panelNhapXuat;
-        private DevExpress.XtraEditors.SpinEdit SoLgTonSpE;
-        private System.Windows.Forms.TextBox DvtTb;
         private System.Windows.Forms.TextBox TenVTTb;
-        private System.Windows.Forms.TextBox MaVTTb;
     }
 }
