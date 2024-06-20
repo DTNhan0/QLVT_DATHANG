@@ -55,13 +55,13 @@ namespace QLVT_DATHANG
             this.TaoTKRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.DangXuatRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ThoatRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.PageBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.BaoCaoGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.PageNhapXuat = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.NhanVienRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.VatTuRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.KhoHangRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.LapPhieuRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.PageBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.BaoCaoGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MaNVSsl = new System.Windows.Forms.ToolStripStatusLabel();
             this.HoTenSsl = new System.Windows.Forms.ToolStripStatusLabel();
@@ -164,6 +164,7 @@ namespace QLVT_DATHANG
             this.KhoHangBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("KhoHangBtn.ImageOptions.LargeImage")));
             this.KhoHangBtn.Name = "KhoHangBtn";
             this.KhoHangBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.KhoHangBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.KhoHangBtn_ItemClick);
             // 
             // LapPhieuBsi
             // 
@@ -256,18 +257,6 @@ namespace QLVT_DATHANG
             this.ThoatRbGrp.Name = "ThoatRbGrp";
             this.ThoatRbGrp.Text = "---Thoát---";
             // 
-            // PageBaoCao
-            // 
-            this.PageBaoCao.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.BaoCaoGrp});
-            this.PageBaoCao.Name = "PageBaoCao";
-            this.PageBaoCao.Text = "BÁO CÁO";
-            // 
-            // BaoCaoGrp
-            // 
-            this.BaoCaoGrp.Name = "BaoCaoGrp";
-            this.BaoCaoGrp.Text = "---Báo cáo---";
-            // 
             // PageNhapXuat
             // 
             this.PageNhapXuat.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -305,6 +294,18 @@ namespace QLVT_DATHANG
             this.LapPhieuRbGrp.ItemLinks.Add(this.LapPhieuBsi);
             this.LapPhieuRbGrp.Name = "LapPhieuRbGrp";
             this.LapPhieuRbGrp.Text = "---Lập phiếu---";
+            // 
+            // PageBaoCao
+            // 
+            this.PageBaoCao.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.BaoCaoGrp});
+            this.PageBaoCao.Name = "PageBaoCao";
+            this.PageBaoCao.Text = "BÁO CÁO";
+            // 
+            // BaoCaoGrp
+            // 
+            this.BaoCaoGrp.Name = "BaoCaoGrp";
+            this.BaoCaoGrp.Text = "---Báo cáo---";
             // 
             // statusStrip1
             // 

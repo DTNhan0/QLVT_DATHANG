@@ -128,5 +128,20 @@ namespace QLVT_DATHANG
                 formVatTu.Show();
             }
         }
+
+        private void KhoHangBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(FormKho));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                FormKho formKho = new FormKho();
+                formKho.MdiParent = this;
+                formKho.Show();
+            }
+        }
     }
 }
