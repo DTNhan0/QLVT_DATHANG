@@ -50,6 +50,9 @@ namespace QLVT_DATHANG
             this.PhieuXuatBtn = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ThoatBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.DanhSachNhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.DanhSachVatTuBtn = new DevExpress.XtraBars.BarButtonItem();
             this.PageHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.DangNhapRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.TaoTKRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -69,6 +72,7 @@ namespace QLVT_DATHANG
             this.xtraTabbedMdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.ChiTietNhapXuatBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -97,9 +101,13 @@ namespace QLVT_DATHANG
             this.PhieuNhapBtn,
             this.PhieuXuatBtn,
             this.barButtonItem1,
-            this.ThoatBtn});
+            this.ThoatBtn,
+            this.DanhSachNhanVienBtn,
+            this.barButtonItem3,
+            this.DanhSachVatTuBtn,
+            this.ChiTietNhapXuatBtn});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 16;
+            this.ribbon.MaxItemId = 21;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.PageHeThong,
@@ -219,6 +227,34 @@ namespace QLVT_DATHANG
             this.ThoatBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.ThoatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ThoatBtn_ItemClick);
             // 
+            // DanhSachNhanVienBtn
+            // 
+            this.DanhSachNhanVienBtn.Caption = "Danh sách nhân viên";
+            this.DanhSachNhanVienBtn.Id = 16;
+            this.DanhSachNhanVienBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DanhSachNhanVienBtn.ImageOptions.Image")));
+            this.DanhSachNhanVienBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DanhSachNhanVienBtn.ImageOptions.LargeImage")));
+            this.DanhSachNhanVienBtn.LargeWidth = 150;
+            this.DanhSachNhanVienBtn.Name = "DanhSachNhanVienBtn";
+            this.DanhSachNhanVienBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.DanhSachNhanVienBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.DanhSachNhanVienBtn_ItemClick);
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "barButtonItem3";
+            this.barButtonItem3.Id = 17;
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // DanhSachVatTuBtn
+            // 
+            this.DanhSachVatTuBtn.Caption = "Danh sách vật tư";
+            this.DanhSachVatTuBtn.Id = 19;
+            this.DanhSachVatTuBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DanhSachVatTuBtn.ImageOptions.Image")));
+            this.DanhSachVatTuBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DanhSachVatTuBtn.ImageOptions.LargeImage")));
+            this.DanhSachVatTuBtn.LargeWidth = 150;
+            this.DanhSachVatTuBtn.Name = "DanhSachVatTuBtn";
+            this.DanhSachVatTuBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.DanhSachVatTuBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.DanhSachVatTuBtn_ItemClick);
+            // 
             // PageHeThong
             // 
             this.PageHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -304,6 +340,9 @@ namespace QLVT_DATHANG
             // 
             // BaoCaoGrp
             // 
+            this.BaoCaoGrp.ItemLinks.Add(this.DanhSachNhanVienBtn);
+            this.BaoCaoGrp.ItemLinks.Add(this.DanhSachVatTuBtn);
+            this.BaoCaoGrp.ItemLinks.Add(this.ChiTietNhapXuatBtn);
             this.BaoCaoGrp.Name = "BaoCaoGrp";
             this.BaoCaoGrp.Text = "---Báo cáo---";
             // 
@@ -352,6 +391,17 @@ namespace QLVT_DATHANG
             // 
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbon;
+            // 
+            // ChiTietNhapXuatBtn
+            // 
+            this.ChiTietNhapXuatBtn.Caption = "Chi tiết nhập xuất";
+            this.ChiTietNhapXuatBtn.Id = 20;
+            this.ChiTietNhapXuatBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ChiTietNhapXuatBtn.ImageOptions.Image")));
+            this.ChiTietNhapXuatBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("ChiTietNhapXuatBtn.ImageOptions.LargeImage")));
+            this.ChiTietNhapXuatBtn.LargeWidth = 150;
+            this.ChiTietNhapXuatBtn.Name = "ChiTietNhapXuatBtn";
+            this.ChiTietNhapXuatBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.ChiTietNhapXuatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ChiTietNhapXuatBtn_ItemClick);
             // 
             // FormChinh
             // 
@@ -411,6 +461,10 @@ namespace QLVT_DATHANG
         private BarButtonItem barButtonItem1;
         private RibbonPageGroup ThoatRbGrp;
         private BarButtonItem ThoatBtn;
+        private BarButtonItem DanhSachNhanVienBtn;
+        private BarButtonItem barButtonItem3;
+        private BarButtonItem DanhSachVatTuBtn;
+        private BarButtonItem ChiTietNhapXuatBtn;
 
         public RibbonPage pageHeThong { get => PageHeThong; set => PageHeThong = value; }
         public RibbonPage pageBaoCao { get => PageBaoCao; set => PageBaoCao = value; }

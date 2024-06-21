@@ -3,6 +3,7 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraTabbedMdi;
+using QLVT_DATHANG.ReportForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -141,6 +142,51 @@ namespace QLVT_DATHANG
                 FormKho formKho = new FormKho();
                 formKho.MdiParent = this;
                 formKho.Show();
+            }
+        }
+
+        private void DanhSachNhanVienBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(FormDanhSachNhanVien));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormDanhSachNhanVien form = new FormDanhSachNhanVien();
+                //form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void DanhSachVatTuBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(FormDanhSachVatTu));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormDanhSachVatTu form = new FormDanhSachVatTu();
+                //form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void ChiTietNhapXuatBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(FormChiTietNhapXuat));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormChiTietNhapXuat form = new FormChiTietNhapXuat();
+                //form.MdiParent = this;
+                form.Show();
             }
         }
     }
