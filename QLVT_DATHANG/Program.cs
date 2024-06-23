@@ -37,6 +37,7 @@ namespace QLVT_DATHANG
 
         //Vật tư đang chọn
         public static string maVatTuDuocChon = "";
+        public static int soLuongVatTu = 0;
 
         //Mã kho đang chọn
         public static string maKhoDuocChon = "";

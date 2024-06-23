@@ -152,6 +152,7 @@
             this.ThoatBtn.TabIndex = 14;
             this.ThoatBtn.Text = "THOÁT";
             this.ThoatBtn.UseVisualStyleBackColor = false;
+            this.ThoatBtn.Click += new System.EventHandler(this.ThoatBtn_Click);
             // 
             // ChonBtn
             // 
@@ -165,6 +166,7 @@
             this.ChonBtn.TabIndex = 13;
             this.ChonBtn.Text = "CHỌN";
             this.ChonBtn.UseVisualStyleBackColor = false;
+            this.ChonBtn.Click += new System.EventHandler(this.ChonBtn_Click);
             // 
             // FormChonDonHang
             // 

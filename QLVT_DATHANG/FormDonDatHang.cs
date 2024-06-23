@@ -379,7 +379,15 @@ namespace QLVT_DATHANG
             {
             if (CheDo)
             {
-                if (bdsCTDDH.Count > 0)
+                DataRowView drv = ((DataRowView)bdsDH[bdsDH.Position]);
+                String maNhanVien = drv["MANV"].ToString();
+                if (Program.username != maNhanVien)
+                {
+                    MessageBox.Show("Bạn không xóa đơn hàng trên phiếu không phải do mình tạo", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+
+                    if (bdsCTDDH.Count > 0)
                 {
                     MessageBox.Show("Không thể xóa đơn đặt hàng này vì có chi tiết đơn đặt hàng", "Thông báo", MessageBoxButtons.OK);
                     return;
@@ -397,7 +405,7 @@ namespace QLVT_DATHANG
 
                         MessageBox.Show("Xóa dữ liệu thành công!");
 
-                        String sql = "declare @result int\r\nexec @result = sp_KiemTraMaDonDatHang '" + MaDDHTb + "'\r\nselect @result";
+                        String sql = "declare @result int\r\nexec @result = sp_KiemTraMaDonDatHang '" + MaDDHTb.Text + "'\r\nselect @result";
                         while (true)
                         {
                             int reader = Program.ExecSqlScalar(sql);
@@ -722,7 +730,6 @@ namespace QLVT_DATHANG
                 XoaBtn.Enabled = false;
                 CTDDHGc.Enabled = false;
             }
-
         }
 
         private void DatHangGc_Click(object sender, EventArgs e)
