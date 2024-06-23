@@ -234,5 +234,35 @@ namespace QLVT_DATHANG
                 form.Show();
             }
         }
+
+        private void DonDatBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(FormDonDatHang));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                FormDonDatHang formDonDatHang = new FormDonDatHang();
+                formDonDatHang.MdiParent = this;
+                formDonDatHang.Show();
+            }
+        }
+
+        private void PhieuNhapBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(FormPhieuNhap));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                FormPhieuNhap formPhieuNhap = new FormPhieuNhap();
+                formPhieuNhap.MdiParent = this;
+                formPhieuNhap.Show();
+            }
+        }
     }
 }

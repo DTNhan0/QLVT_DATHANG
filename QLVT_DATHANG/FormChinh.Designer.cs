@@ -56,6 +56,7 @@ namespace QLVT_DATHANG
             this.ChiTietNhapXuatBtn = new DevExpress.XtraBars.BarButtonItem();
             this.DHKoPNBtn = new DevExpress.XtraBars.BarButtonItem();
             this.HoatDongNhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.TongHopNXBtn = new DevExpress.XtraBars.BarButtonItem();
             this.PageHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.DangNhapRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.TaoTKRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -75,7 +76,6 @@ namespace QLVT_DATHANG
             this.xtraTabbedMdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.TongHopNXBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -200,6 +200,7 @@ namespace QLVT_DATHANG
             this.DonDatBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DonDatBtn.ImageOptions.Image")));
             this.DonDatBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DonDatBtn.ImageOptions.LargeImage")));
             this.DonDatBtn.Name = "DonDatBtn";
+            this.DonDatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.DonDatBtn_ItemClick);
             // 
             // PhieuNhapBtn
             // 
@@ -208,6 +209,7 @@ namespace QLVT_DATHANG
             this.PhieuNhapBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("PhieuNhapBtn.ImageOptions.Image")));
             this.PhieuNhapBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("PhieuNhapBtn.ImageOptions.LargeImage")));
             this.PhieuNhapBtn.Name = "PhieuNhapBtn";
+            this.PhieuNhapBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.PhieuNhapBtn_ItemClick);
             // 
             // PhieuXuatBtn
             // 
@@ -293,6 +295,17 @@ namespace QLVT_DATHANG
             this.HoatDongNhanVienBtn.Name = "HoatDongNhanVienBtn";
             this.HoatDongNhanVienBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.HoatDongNhanVienBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.HoatDongNhanVienBtn_ItemClick);
+            // 
+            // TongHopNXBtn
+            // 
+            this.TongHopNXBtn.Caption = "Tổng hợp nhập xuất";
+            this.TongHopNXBtn.Id = 23;
+            this.TongHopNXBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("TongHopNXBtn.ImageOptions.Image")));
+            this.TongHopNXBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("TongHopNXBtn.ImageOptions.LargeImage")));
+            this.TongHopNXBtn.LargeWidth = 150;
+            this.TongHopNXBtn.Name = "TongHopNXBtn";
+            this.TongHopNXBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.TongHopNXBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TongHopNXBtn_ItemClick);
             // 
             // PageHeThong
             // 
@@ -433,17 +446,6 @@ namespace QLVT_DATHANG
             // 
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbon;
-            // 
-            // TongHopNXBtn
-            // 
-            this.TongHopNXBtn.Caption = "Tổng hợp nhập xuất";
-            this.TongHopNXBtn.Id = 23;
-            this.TongHopNXBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("TongHopNXBtn.ImageOptions.Image")));
-            this.TongHopNXBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("TongHopNXBtn.ImageOptions.LargeImage")));
-            this.TongHopNXBtn.LargeWidth = 150;
-            this.TongHopNXBtn.Name = "TongHopNXBtn";
-            this.TongHopNXBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.TongHopNXBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TongHopNXBtn_ItemClick);
             // 
             // FormChinh
             // 

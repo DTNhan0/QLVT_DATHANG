@@ -98,6 +98,12 @@
     <Compile Include="FormDonDatHang.Designer.cs">
       <DependentUpon>FormDonDatHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPhieuNhap.Designer.cs">
+      <DependentUpon>FormPhieuNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForm\FormChiTietNhapXuat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,11 +197,35 @@
       <DependentUpon>ReportTongHopNhapXuat.cs</DependentUpon>
     </Compile>
     <Compile Include="StackUndoRedo.cs" />
+    <Compile Include="SubForm\FormChonChiTietDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\FormChonChiTietDonHang.Designer.cs">
+      <DependentUpon>FormChonChiTietDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\FormChonDonHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\FormChonDonHang.Designer.cs">
+      <DependentUpon>FormChonDonHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\FormChonKhoHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\FormChonKhoHang.Designer.cs">
+      <DependentUpon>FormChonKhoHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubForm\FormChonNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SubForm\FormChonNhanVien.Designer.cs">
       <DependentUpon>FormChonNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\FormChonVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\FormChonVatTu.Designer.cs">
+      <DependentUpon>FormChonVatTu.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormChinh.resx">
       <DependentUpon>FormChinh.cs</DependentUpon>
@@ -211,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNhanVien.resx">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPhieuNhap.resx">
+      <DependentUpon>FormPhieuNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVatTu.resx">
       <DependentUpon>FormVatTu.cs</DependentUpon>
@@ -261,8 +294,20 @@
     <EmbeddedResource Include="ReportForm\ReportTongHopNhapXuat.resx">
       <DependentUpon>ReportTongHopNhapXuat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\FormChonChiTietDonHang.resx">
+      <DependentUpon>FormChonChiTietDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\FormChonDonHang.resx">
+      <DependentUpon>FormChonDonHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\FormChonKhoHang.resx">
+      <DependentUpon>FormChonKhoHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SubForm\FormChonNhanVien.resx">
       <DependentUpon>FormChonNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\FormChonVatTu.resx">
+      <DependentUpon>FormChonVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DataSet.xsc">

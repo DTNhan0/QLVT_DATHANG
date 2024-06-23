@@ -1,0 +1,11 @@
+CREATE PROCEDURE sp_KiemTraChiTietDonDatHang
+	@id nvarchar(15),
+	@id_VT nvarchar(15)
+AS
+BEGIN
+	IF( EXISTS(SELECT * FROM CTDDH AS Ctddh WHERE Ctddh.MasoDDH = @id AND Ctddh.MAVT = @id_VT) )
+		RETURN 1;
+	ELSE IF ( EXISTS( SELECT * FROM LINK0.QLVT_DATHANG.DBO.CTDDH AS Ctddh WHERE Ctddh.MasoDDH = @id AND Ctddh.MAVT = @id_VT) )
+		RETURN 1;
+	RETURN 0;-- id nhap vao khong ton tai
+END

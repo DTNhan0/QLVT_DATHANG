@@ -35,10 +35,12 @@ namespace QLVT_DATHANG
         public static String mHoten = "";
         public static int mChiNhanh = 0;
 
-        public static string maKhoDuocChon = "";
+        //Vật tư đang chọn
         public static string maVatTuDuocChon = "";
 
-        public static int soLuongVatTu = 0;
+        //Mã kho đang chọn
+        public static string maKhoDuocChon = "";
+
         public static string maDonDatHangDuocChon = "";
         public static string maDonDatHangDuocChonChiTiet = "";
         public static int donGia = 0;
