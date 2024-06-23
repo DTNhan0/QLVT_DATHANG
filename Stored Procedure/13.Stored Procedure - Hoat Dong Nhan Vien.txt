@@ -1,0 +1,79 @@
+*Mục đích : lấy chi tiết phiếu nhập | xuất do một nhân viên X lập từ ngày Y tới ngày Z với mã nhân viên.
+
+*Cú pháp:
+
+ALTER PROCEDURE [dbo].[sp_HoatDongNhanVien]
+@MANV int,
+@DATEFROM DATETIME,
+@DATETO DATETIME
+AS
+BEGIN
+    -- Temporary table to hold the combined results
+    CREATE TABLE #HoatDong (
+        NGAY DATETIME,
+        MAPHIEU NVARCHAR(50),
+        LOAIPHIEU NVARCHAR(10),
+        TENKH NVARCHAR(100),
+        TENVT NVARCHAR(100),
+        SOLUONG INT,
+        DONGIA DECIMAL(18, 2),
+        TRIGIA AS (SOLUONG * DONGIA)
+    )
+
+    -- Insert data for NHAP
+    INSERT INTO #HoatDong (NGAY, MAPHIEU, LOAIPHIEU, TENVT, SOLUONG, DONGIA)
+    SELECT PN.NGAY, 
+           PN.MAPN AS MAPHIEU,
+           'Nhập' AS LOAIPHIEU,
+           VT.TENVT, 
+           CTPN.SOLUONG,
+           CTPN.DONGIA
+    FROM PhieuNhap AS PN
+    JOIN CTPN ON PN.MAPN = CTPN.MAPN
+    JOIN Vattu AS VT ON CTPN.MAVT = VT.MAVT
+    WHERE PN.NGAY BETWEEN @DATEFROM AND @DATETO 
+    AND PN.MANV = @MANV
+
+    -- Insert data for XUAT
+    INSERT INTO #HoatDong (NGAY, MAPHIEU, LOAIPHIEU, TENKH, TENVT, SOLUONG, DONGIA)
+    SELECT PX.NGAY, 
+           PX.MAPX AS MAPHIEU,
+           'Xuất' AS LOAIPHIEU,
+		   PX.HOTENKH AS TENKH,
+           VT.TENVT, 
+           CTPX.SOLUONG,
+           CTPX.DONGIA
+    FROM PhieuXuat AS PX
+    JOIN CTPX ON PX.MAPX = CTPX.MAPX
+    JOIN Vattu AS VT ON CTPX.MAVT = VT.MAVT
+    WHERE PX.NGAY BETWEEN @DATEFROM AND @DATETO 
+    AND PX.MANV = @MANV
+
+    -- Select the final result
+    SELECT 
+        FORMAT(NGAY, 'dd-MM-yyyy') AS NGAY, 
+        MAPHIEU, 
+        LOAIPHIEU, 
+        TENKH,
+        TENVT, 
+        SOLUONG, 
+        DONGIA, 
+        TRIGIA
+    FROM #HoatDong
+    ORDER BY NGAY, MAPHIEU, TENVT
+
+    -- Calculate monthly totals
+    SELECT 
+        'Tổng tháng ' + FORMAT(NGAY, 'MM-yyyy') AS SUMMARY,
+        SUM(SOLUONG) AS TONG_SOLUONG,
+        SUM(TRIGIA) AS TONG_TRIGIA
+    FROM #HoatDong
+    GROUP BY FORMAT(NGAY, 'MM-yyyy')
+    ORDER BY FORMAT(NGAY, 'MM-yyyy')
+
+    DROP TABLE #HoatDong
+END
+
+*Xem kết quả:
+EXEC sp_HoatDongNhanVien 6, 'XUAT', '01-01-2009','01-01-2022'
+EXEC sp_HoatDongNhanVien 6, 'NHAP', '01-01-2009','01-01-2022'

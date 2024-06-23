@@ -92,6 +92,12 @@
     <Compile Include="FormDangNhap.Designer.cs">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormDonDatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDonDatHang.Designer.cs">
+      <DependentUpon>FormDonDatHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForm\FormChiTietNhapXuat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,24 @@
     <Compile Include="ReportForm\FormDanhSachVatTu.Designer.cs">
       <DependentUpon>FormDanhSachVatTu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForm\FormDonHangKhongPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForm\FormDonHangKhongPhieuNhap.Designer.cs">
+      <DependentUpon>FormDonHangKhongPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForm\FormHoatDongNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForm\FormHoatDongNhanVien.Designer.cs">
+      <DependentUpon>FormHoatDongNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForm\FormTongHopNhapXuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForm\FormTongHopNhapXuat.Designer.cs">
+      <DependentUpon>FormTongHopNhapXuat.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportForm\ReportChiTietNhapXuat.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -148,12 +172,39 @@
     <Compile Include="ReportForm\ReportDanhSachVatTu.Designer.cs">
       <DependentUpon>ReportDanhSachVatTu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportForm\ReportDonHangKhongPhieuNhap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportForm\ReportDonHangKhongPhieuNhap.Designer.cs">
+      <DependentUpon>ReportDonHangKhongPhieuNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForm\ReportHoatDongNhanVien.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportForm\ReportHoatDongNhanVien.Designer.cs">
+      <DependentUpon>ReportHoatDongNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportForm\ReportTongHopNhapXuat.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportForm\ReportTongHopNhapXuat.Designer.cs">
+      <DependentUpon>ReportTongHopNhapXuat.cs</DependentUpon>
+    </Compile>
     <Compile Include="StackUndoRedo.cs" />
+    <Compile Include="SubForm\FormChonNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\FormChonNhanVien.Designer.cs">
+      <DependentUpon>FormChonNhanVien.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormChinh.resx">
       <DependentUpon>FormChinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDonDatHang.resx">
+      <DependentUpon>FormDonDatHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormKho.resx">
       <DependentUpon>FormKho.cs</DependentUpon>
@@ -183,6 +234,15 @@
     <EmbeddedResource Include="ReportForm\FormDanhSachVatTu.resx">
       <DependentUpon>FormDanhSachVatTu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm\FormDonHangKhongPhieuNhap.resx">
+      <DependentUpon>FormDonHangKhongPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm\FormHoatDongNhanVien.resx">
+      <DependentUpon>FormHoatDongNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm\FormTongHopNhapXuat.resx">
+      <DependentUpon>FormTongHopNhapXuat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportForm\ReportChiTietNhapXuat.resx">
       <DependentUpon>ReportChiTietNhapXuat.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +251,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForm\ReportDanhSachVatTu.resx">
       <DependentUpon>ReportDanhSachVatTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm\ReportDonHangKhongPhieuNhap.resx">
+      <DependentUpon>ReportDonHangKhongPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm\ReportHoatDongNhanVien.resx">
+      <DependentUpon>ReportHoatDongNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForm\ReportTongHopNhapXuat.resx">
+      <DependentUpon>ReportTongHopNhapXuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\FormChonNhanVien.resx">
+      <DependentUpon>FormChonNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="DataSet.xsc">
@@ -216,7 +288,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Image\" />
-    <Folder Include="SubForm\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

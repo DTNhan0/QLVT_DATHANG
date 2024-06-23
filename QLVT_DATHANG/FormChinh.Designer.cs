@@ -53,6 +53,9 @@ namespace QLVT_DATHANG
             this.DanhSachNhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.DanhSachVatTuBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.ChiTietNhapXuatBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.DHKoPNBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.HoatDongNhanVienBtn = new DevExpress.XtraBars.BarButtonItem();
             this.PageHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.DangNhapRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.TaoTKRbGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -72,7 +75,7 @@ namespace QLVT_DATHANG
             this.xtraTabbedMdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.ChiTietNhapXuatBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.TongHopNXBtn = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -105,9 +108,12 @@ namespace QLVT_DATHANG
             this.DanhSachNhanVienBtn,
             this.barButtonItem3,
             this.DanhSachVatTuBtn,
-            this.ChiTietNhapXuatBtn});
+            this.ChiTietNhapXuatBtn,
+            this.DHKoPNBtn,
+            this.HoatDongNhanVienBtn,
+            this.TongHopNXBtn});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 21;
+            this.ribbon.MaxItemId = 24;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.PageHeThong,
@@ -255,6 +261,39 @@ namespace QLVT_DATHANG
             this.DanhSachVatTuBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.DanhSachVatTuBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.DanhSachVatTuBtn_ItemClick);
             // 
+            // ChiTietNhapXuatBtn
+            // 
+            this.ChiTietNhapXuatBtn.Caption = "Chi tiết nhập xuất";
+            this.ChiTietNhapXuatBtn.Id = 20;
+            this.ChiTietNhapXuatBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ChiTietNhapXuatBtn.ImageOptions.Image")));
+            this.ChiTietNhapXuatBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("ChiTietNhapXuatBtn.ImageOptions.LargeImage")));
+            this.ChiTietNhapXuatBtn.LargeWidth = 150;
+            this.ChiTietNhapXuatBtn.Name = "ChiTietNhapXuatBtn";
+            this.ChiTietNhapXuatBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.ChiTietNhapXuatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ChiTietNhapXuatBtn_ItemClick);
+            // 
+            // DHKoPNBtn
+            // 
+            this.DHKoPNBtn.Caption = "Đơn hàng không phiếu nhập";
+            this.DHKoPNBtn.Id = 21;
+            this.DHKoPNBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("DHKoPNBtn.ImageOptions.Image")));
+            this.DHKoPNBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("DHKoPNBtn.ImageOptions.LargeImage")));
+            this.DHKoPNBtn.LargeWidth = 150;
+            this.DHKoPNBtn.Name = "DHKoPNBtn";
+            this.DHKoPNBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.DHKoPNBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.DHKoPNBtn_ItemClick);
+            // 
+            // HoatDongNhanVienBtn
+            // 
+            this.HoatDongNhanVienBtn.Caption = "Hoạt động nhân viên";
+            this.HoatDongNhanVienBtn.Id = 22;
+            this.HoatDongNhanVienBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("HoatDongNhanVienBtn.ImageOptions.Image")));
+            this.HoatDongNhanVienBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("HoatDongNhanVienBtn.ImageOptions.LargeImage")));
+            this.HoatDongNhanVienBtn.LargeWidth = 150;
+            this.HoatDongNhanVienBtn.Name = "HoatDongNhanVienBtn";
+            this.HoatDongNhanVienBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.HoatDongNhanVienBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.HoatDongNhanVienBtn_ItemClick);
+            // 
             // PageHeThong
             // 
             this.PageHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -343,6 +382,9 @@ namespace QLVT_DATHANG
             this.BaoCaoGrp.ItemLinks.Add(this.DanhSachNhanVienBtn);
             this.BaoCaoGrp.ItemLinks.Add(this.DanhSachVatTuBtn);
             this.BaoCaoGrp.ItemLinks.Add(this.ChiTietNhapXuatBtn);
+            this.BaoCaoGrp.ItemLinks.Add(this.DHKoPNBtn);
+            this.BaoCaoGrp.ItemLinks.Add(this.HoatDongNhanVienBtn);
+            this.BaoCaoGrp.ItemLinks.Add(this.TongHopNXBtn);
             this.BaoCaoGrp.Name = "BaoCaoGrp";
             this.BaoCaoGrp.Text = "---Báo cáo---";
             // 
@@ -392,16 +434,16 @@ namespace QLVT_DATHANG
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbon;
             // 
-            // ChiTietNhapXuatBtn
+            // TongHopNXBtn
             // 
-            this.ChiTietNhapXuatBtn.Caption = "Chi tiết nhập xuất";
-            this.ChiTietNhapXuatBtn.Id = 20;
-            this.ChiTietNhapXuatBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("ChiTietNhapXuatBtn.ImageOptions.Image")));
-            this.ChiTietNhapXuatBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("ChiTietNhapXuatBtn.ImageOptions.LargeImage")));
-            this.ChiTietNhapXuatBtn.LargeWidth = 150;
-            this.ChiTietNhapXuatBtn.Name = "ChiTietNhapXuatBtn";
-            this.ChiTietNhapXuatBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.ChiTietNhapXuatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ChiTietNhapXuatBtn_ItemClick);
+            this.TongHopNXBtn.Caption = "Tổng hợp nhập xuất";
+            this.TongHopNXBtn.Id = 23;
+            this.TongHopNXBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("TongHopNXBtn.ImageOptions.Image")));
+            this.TongHopNXBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("TongHopNXBtn.ImageOptions.LargeImage")));
+            this.TongHopNXBtn.LargeWidth = 150;
+            this.TongHopNXBtn.Name = "TongHopNXBtn";
+            this.TongHopNXBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.TongHopNXBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TongHopNXBtn_ItemClick);
             // 
             // FormChinh
             // 
@@ -465,6 +507,9 @@ namespace QLVT_DATHANG
         private BarButtonItem barButtonItem3;
         private BarButtonItem DanhSachVatTuBtn;
         private BarButtonItem ChiTietNhapXuatBtn;
+        private BarButtonItem DHKoPNBtn;
+        private BarButtonItem HoatDongNhanVienBtn;
+        private BarButtonItem TongHopNXBtn;
 
         public RibbonPage pageHeThong { get => PageHeThong; set => PageHeThong = value; }
         public RibbonPage pageBaoCao { get => PageBaoCao; set => PageBaoCao = value; }

@@ -189,5 +189,50 @@ namespace QLVT_DATHANG
                 form.Show();
             }
         }
+
+        private void DHKoPNBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(FormDonHangKhongPhieuNhap));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormDonHangKhongPhieuNhap form = new FormDonHangKhongPhieuNhap();
+                //form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void HoatDongNhanVienBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(FormHoatDongNhanVien));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormHoatDongNhanVien form = new FormHoatDongNhanVien();
+                //form.MdiParent = this;
+                form.Show();
+            }
+        }
+
+        private void TongHopNXBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(FormTongHopNhapXuat));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormTongHopNhapXuat form = new FormTongHopNhapXuat();
+                //form.MdiParent = this;
+                form.Show();
+            }
+        }
     }
 }
