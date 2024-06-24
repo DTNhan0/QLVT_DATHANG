@@ -84,6 +84,7 @@ namespace QLVT_DATHANG
 
             this.Visible = false;
             formChinh.setEnableOptions(true);
+            formChinh.TaoTKBtn1.Enabled = true;
         }
 
 

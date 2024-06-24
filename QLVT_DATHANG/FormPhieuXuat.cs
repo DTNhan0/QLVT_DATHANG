@@ -13,35 +13,33 @@ using System.Windows.Forms;
 
 namespace QLVT_DATHANG
 {
-    public partial class FormPhieuNhap : DevExpress.XtraEditors.XtraForm
+    public partial class FormPhieuXuat : DevExpress.XtraEditors.XtraForm
     {
-        int ViTriPN = -1;
-        int ViTriCTPN = -1;
+        int ViTriPX = -1;
+        int ViTriCTPX = -1;
         bool CheDo;
         BindingSource bds = null;
         bool dangThemMoi = false;
 
-        public FormPhieuNhap()
+        public FormPhieuXuat()
         {
             InitializeComponent();
         }
 
-        private void FormPhieuNhap_Load(object sender, EventArgs e)
+        private void FormPhieuXuat_Load(object sender, EventArgs e)
         {
-
             DataSet.EnforceConstraints = false;
+            this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.khoTableAdapter.Fill(this.DataSet.Kho);
 
-            this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.phieuNhapTableAdapter.Fill(this.DataSet.PhieuNhap);
+            this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.vattuTableAdapter.Fill(this.DataSet.Vattu);
 
-            this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.cTPNTableAdapter.Fill(this.DataSet.CTPN);
+            this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.phieuXuatTableAdapter.Fill(this.DataSet.PhieuXuat);
 
-            this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.datHangTableAdapter.Fill(this.DataSet.DatHang);
-
-            this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.cTDDHTableAdapter.Fill(this.DataSet.CTDDH);
+            this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.cTPXTableAdapter.Fill(this.DataSet.CTPX);
 
             /*van con ton tai loi chua sua duoc*/
             //maChiNhanh = ((DataRowView)bdsVatTu[0])["MACN"].ToString();
@@ -62,14 +60,14 @@ namespace QLVT_DATHANG
             {
                 case "CONGTY":
                     ChiNhanhCb.Enabled = true;
-                    PhieuNhapGc.Enabled = true;
-                    CTPNGc.Enabled = true;
+                    PhieuXuatGc.Enabled = true;
+                    CTPXGc.Enabled = true;
                     ApDungChoBsi.Enabled = false;
                     HoanTacBtn.Enabled = false;
                     setEnableOptions(false);
                     setEnableDetails(false);
-                    ChonDHBtn.Enabled = false;
-                    ChonCTDHBtn.Enabled = false;
+                    ChonKHBtn.Enabled = false;
+                    ChonVatTuBtn.Enabled = false;
                     break;
                 case "CHINHANH":
                     setEnableOptions(true);
@@ -82,6 +80,23 @@ namespace QLVT_DATHANG
                 default:
                     break;
             }
+        }
+
+        private void ChonKHBtn_Click(object sender, EventArgs e)
+        {
+            FormChonKhoHang form = new FormChonKhoHang();
+            form.ShowDialog();
+            this.MaKhoTb.Text = Program.maKhoDuocChon;
+        }
+
+        private void ChonVatTuBtn_Click(object sender, EventArgs e)
+        {
+            FormChonVatTu form = new FormChonVatTu();
+            form.ShowDialog();
+
+            Thread.Sleep(100);
+            this.MaVTTb.Text = Program.maVatTuDuocChon;
+            ((DataRowView)(bdsCTPX.Current))["MAVT"] = MaCTVTTb.Text;
         }
 
         private void setEnableOptions(bool check)
@@ -104,6 +119,7 @@ namespace QLVT_DATHANG
         {
             if (check)
             {
+                this.HoTenKHTb.Enabled = true;
                 this.NgayDE.Enabled = true;
 
                 DonGiaTb.Enabled = true;
@@ -111,6 +127,7 @@ namespace QLVT_DATHANG
             }
             else if (check == false)
             {
+                this.HoTenKHTb.Enabled = false;
                 this.NgayDE.Enabled = false;
 
                 DonGiaTb.Enabled = false;
@@ -143,43 +160,46 @@ namespace QLVT_DATHANG
             }
             else
             {
-                this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.phieuNhapTableAdapter.Fill(this.DataSet.PhieuNhap);
+                this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.khoTableAdapter.Fill(this.DataSet.Kho);
 
-                this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTPNTableAdapter.Fill(this.DataSet.CTPN);
+                this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.vattuTableAdapter.Fill(this.DataSet.Vattu);
 
-                this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.datHangTableAdapter.Fill(this.DataSet.DatHang);
+                this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.cTPXTableAdapter.Fill(this.DataSet.CTPX);
 
-                this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTDDHTableAdapter.Fill(this.DataSet.CTDDH);
+                this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.phieuXuatTableAdapter.Fill(this.DataSet.PhieuXuat);
+
+                this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.khoTableAdapter.Fill(this.DataSet.Kho);
             }
         }
 
-        private void PhieuNhapBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void PhieuXuatBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            PhieuNhapGc.Enabled = true;
-            PNGrpC.Enabled = true;
-            CTPNGc.Enabled = false;
-            CTPNGrpC.Enabled = false;
+            PhieuXuatGc.Enabled = true;
+            PXGrpC.Enabled = true;
+            CTPXGc.Enabled = false;
+            CTPXGrpC.Enabled = false;
             CheDo = true;
-            bds = bdsPN;
-            ApDungChoBsi.Caption = "Phiếu nhập";
+            bds = bdsPX;
+            ApDungChoBsi.Caption = "Phiếu xuất";
             setEnableOptions(true);
             setEnableDetails(true);
             CheckLoginPermission();
         }
 
-        private void ChiTietPNBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void ChiTietPXBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            PhieuNhapGc.Enabled = false;
-            PNGrpC.Enabled = false;
-            CTPNGc.Enabled = true;
-            CTPNGrpC.Enabled = true;
+            PhieuXuatGc.Enabled = false;
+            PXGrpC.Enabled = false;
+            CTPXGc.Enabled = true;
+            CTPXGrpC.Enabled = true;
             CheDo = false;
-            bds = bdsCTPN;
-            ApDungChoBsi.Caption = "Chi tiết phiếu nhập";
+            bds = bdsCTPX;
+            ApDungChoBsi.Caption = "Chi tiết phiếu xuất";
             setEnableOptions(true);
             setEnableDetails(true);
             CheckLoginPermission();
@@ -189,16 +209,39 @@ namespace QLVT_DATHANG
         {
             if (CheDo)
             {
-                if (MaPNTb.Text == "")
+                DataRowView drv = ((DataRowView)bdsPX[bdsPX.Position]);
+                String maNhanVien = drv["MANV"].ToString();
+                if (Program.username != maNhanVien)
                 {
-                    MessageBox.Show("Không bỏ trống mã phiếu nhập !", "Thông báo", MessageBoxButtons.OK);
-                    MaPNTb.Focus();
+                    MessageBox.Show("Không thể sửa phiếu xuất do người khác tạo", "Thông báo", MessageBoxButtons.OK);
                     return false;
                 }
 
-                if (MaNVTb.Text == "")
+                if (MaPXTb.Text == "")
                 {
-                    MessageBox.Show("Không bỏ trống mã nhân viên !", "Thông báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Không bỏ trống mã phiếu xuất !", "Thông báo", MessageBoxButtons.OK);
+                    MaPXTb.Focus();
+                    return false;
+                }
+
+                if (MaPXTb.Text.Length > 8)
+                {
+                    MessageBox.Show("Mã phiếu xuất không thể quá 8 kí tự !", "Thông báo", MessageBoxButtons.OK);
+                    MaPXTb.Focus();
+                    return false;
+                }
+
+                if (HoTenKHTb.Text == "")
+                {
+                    MessageBox.Show("Không bỏ trống tên khách hàng !", "Thông báo", MessageBoxButtons.OK);
+                    HoTenKHTb.Focus();
+                    return false;
+                }
+
+                if (HoTenKHTb.Text.Length > 100)
+                {
+                    MessageBox.Show("Tên khách hàng không quá 100 kí tự !", "Thông báo", MessageBoxButtons.OK);
+                    HoTenKHTb.Focus();
                     return false;
                 }
 
@@ -207,38 +250,54 @@ namespace QLVT_DATHANG
                     MessageBox.Show("Không bỏ trống mã kho !", "Thông báo", MessageBoxButtons.OK);
                     return false;
                 }
-
-                if (MaSoDDHTb.Text == "")
-                {
-                    MessageBox.Show("Không bỏ trống mã đơn đặt hàng !", "Thông báo", MessageBoxButtons.OK);
-                    return false;
-                }
             }
 
             if (CheDo == false)
             {
-                if (MaPNCTTb.Text == "")
+                DataRowView drv = ((DataRowView)bdsPX[bdsPX.Position]);
+                String maNhanVien = drv["MANV"].ToString();
+                if (Program.username != maNhanVien)
+                {
+                    MessageBox.Show("Không thể thêm chi tiết phiếu xuất với phiếu xuất do người khác tạo !", "Thông báo", MessageBoxButtons.OK);
+                    bdsCTPX.RemoveCurrent();
+                    return false;
+                }
+
+                if (MaPXTb.Text == "")
                 {
                     MessageBox.Show("Không bỏ trống mã phiếu nhập !", "Thông báo", MessageBoxButtons.OK);
-                    MaPNCTTb.Focus();
+                    MaPXTb.Focus();
+                    return false;
+                }
+
+                if (MaPXTb.Text.Length > 8)
+                {
+                    MessageBox.Show("Mã phiếu xuất không thể quá 8 kí tự !", "Thông báo", MessageBoxButtons.OK);
+                    MaPXTb.Focus();
+                    return false;
+                }
+
+                if (MaCTVTTb.Text == "")
+                {
+                    MessageBox.Show("Thiếu mã vật tư !", "Thông báo", MessageBoxButtons.OK);
+                    MaCTVTTb.Focus();
                     return false;
                 }
 
                 if (MaVTTb.Text == "")
                 {
-                    MessageBox.Show("Không bỏ trống mã vật tư !", "Thông báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Thiếu mã vật tư chi tiết, vui lòng chọn vật tư!", "Thông báo", MessageBoxButtons.OK);
+                    MaCTVTTb.Focus();
                     return false;
                 }
-                if (DonGiaTb.Text == "")
+
+                if (MaCTVTTb.Text.Length > 4)
                 {
-                    MessageBox.Show("Không thể bỏ trống đơn giá", "Thông báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Mã vật tư không quá 4 kí tự !", "Thông báo", MessageBoxButtons.OK);
+                    MaCTVTTb.Focus();
                     return false;
                 }
-                if (SoLuongTb.Text == "")
-                {
-                    MessageBox.Show("Không thể bỏ trống số lượng vật tư", "Thông báo", MessageBoxButtons.OK);
-                    return false;
-                }
+
                 int soLuongVatTu;
                 float donGia;
 
@@ -251,76 +310,50 @@ namespace QLVT_DATHANG
                     return false;
                 }
             }
-
             return true;
-        }
-
-        private void ChonDHBtn_Click(object sender, EventArgs e)
-        {
-            FormChonDonHang form = new FormChonDonHang();
-            form.ShowDialog();
-
-            this.MaSoDDHTb.Text = Program.maDonDatHangDuocChon;
-            this.MaKhoTb.Text = Program.maKhoDuocChon;
-        }
-
-        private void ChonCTDHBtn_Click(object sender, EventArgs e)
-        {
-            /*Lay MasoDDH hien tai cua gcPhieuNhap de so sanh voi MasoDDH se duoc chon*/
-            Program.maDonDatHangDuocChon = ((DataRowView)(bdsPN.Current))["MasoDDH"].ToString().Trim();
-
-            //Console.WriteLine(Program.maDonDatHangDuocChon);
-            FormChonChiTietDonHang form = new FormChonChiTietDonHang();
-            form.ShowDialog();
-
-            this.MaVTTb.Text = Program.maVatTuDuocChon;
-            this.SoLuongTb.Text = Program.soLuongVatTu.ToString();
-            this.DonGiaTb.Text = Program.donGia.ToString();
         }
 
         private void LamMoiBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
-                MaPNTb.Enabled = false;
                 setEnableDetails(true);
                 setEnableOptions(true);
                 CheckLoginPermission();
-                this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.phieuNhapTableAdapter.Update(this.DataSet.PhieuNhap);
+                MaPXTb.Enabled = false;
 
-                this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTPNTableAdapter.Update(this.DataSet.CTPN);
+                this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.khoTableAdapter.Update(this.DataSet.Kho);
+                this.khoTableAdapter.Fill(this.DataSet.Kho);
 
+                this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.vattuTableAdapter.Update(this.DataSet.Vattu);
+                this.vattuTableAdapter.Fill(this.DataSet.Vattu);
 
-                this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.datHangTableAdapter.Fill(this.DataSet.DatHang);
+                this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.cTPXTableAdapter.Update(this.DataSet.CTPX);
+                this.cTPXTableAdapter.Fill(this.DataSet.CTPX);
 
-                this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTDDHTableAdapter.Fill(this.DataSet.CTDDH);
-
-                this.phieuNhapTableAdapter.Fill(this.DataSet.PhieuNhap);
-                this.cTPNTableAdapter.Fill(this.DataSet.CTPN);
-
-
-                BoGhiBtn.Enabled = false;
+                this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.phieuXuatTableAdapter.Update(this.DataSet.PhieuXuat);
+                this.phieuXuatTableAdapter.Fill(this.DataSet.PhieuXuat);
 
                 if (CheDo)
                 {
-                    PhieuNhapGc.Enabled = true;
-                    CTPNGc.Enabled = false;
+                    PhieuXuatGc.Enabled = true;
+                    CTPXGc.Enabled = false;
                 }
                 else
                 {
-                    PhieuNhapGc.Enabled = false;
-                    CTPNGc.Enabled = true;
+                    PhieuXuatGc.Enabled = false;
+                    CTPXGc.Enabled = true;
                 }
 
-                bdsPN.Position = ViTriPN;
-                bdsCTPN.Position = ViTriCTPN;
+                bdsPX.Position = ViTriPX;
+                bdsCTPX.Position = ViTriCTPX;
 
-                ChonDHBtn.Enabled = false;
-                ChonCTDHBtn.Enabled = false;
+                ChonKHBtn.Enabled = false;
+                ChonVatTuBtn.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -329,15 +362,10 @@ namespace QLVT_DATHANG
             }
         }
 
-        private void ThoatBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            this.Dispose();
-        }
-
         private void ThemBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ChonDHBtn.Enabled = true;
-            ChonCTDHBtn.Enabled = true;
+            ChonKHBtn.Enabled = true;
+            ChonVatTuBtn.Enabled = true;
 
             dangThemMoi = true;
 
@@ -348,78 +376,79 @@ namespace QLVT_DATHANG
 
                 this.NgayDE.EditValue = DateTime.Now;
                 this.MaNVTb.Text = Program.username;
-                MaPNTb.Text = "";
-                NgayDE.Text = "";
+                HoTenKHTb.Text = "";
+                MaPXTb.Text = "";
                 MaKhoTb.Text = "";
-                MaSoDDHTb.Text = "";
-                MaPNTb.Enabled = true;
+                MaPXTb.Enabled = true;
 
-                ((DataRowView)(bdsPN.Current))["MANV"] = Program.username;
-                ((DataRowView)(bdsPN.Current))["NGAY"] = DateTime.Now;
+                ((DataRowView)(bdsPX.Current))["MANV"] = Program.username;
+                ((DataRowView)(bdsPX.Current))["NGAY"] = DateTime.Now;
+                ((DataRowView)(bdsPX.Current))["MAKHO"] = Program.maKhoDuocChon;
             }
             else
             {
-                DataRowView drv = ((DataRowView)bdsPN[bdsPN.Position]);
+                DataRowView drv = ((DataRowView)bdsPX[bdsPX.Position]);
                 String maNhanVien = drv["MANV"].ToString();
-
-                SoLuongTb.Text = "0";
-                DonGiaTb.Text = "0";
-
-                MaVTTb.Text = "";
-
                 if (Program.username != maNhanVien)
                 {
-                    MessageBox.Show("Bạn không thêm chi tiết phiếu nhập không phải do mình tạo", "Thông báo", MessageBoxButtons.OK);
-                    bdsCTPN.RemoveCurrent();
-                    LamMoiBtn.PerformClick();
+                    MessageBox.Show("Không thể thêm chi tiết phiếu xuất trên phiếu  không phải do mình tạo", "Thông báo", MessageBoxButtons.OK);
                     return;
                 }
-                ((DataRowView)(bdsCTDDH.Current))["MasoDDH"] = Program.maDonDatHangDuocChon;
+
+               /*Gan tu dong may truong du lieu nay*/
+               ((DataRowView)(bdsCTPX.Current))["MAPX"] = MaPXTb.Text;
+                MaCTPXTb.Text = MaPXTb.Text;
+               ((DataRowView)(bdsCTPX.Current))["MAVT"] = Program.maVatTuDuocChon;
+
+                MaVTTb.Text = "";
+                SoLuongTonTb.Text = "0";
+
+                MaCTVTTb.Text = "";
+                DonGiaTb.Text = "0";
+                SoLuongTb.Text = "0";
+
 
                 setEnableDetails(true);
             }
 
             setEnableOptions(false);
-            BoGhiBtn.Enabled = true;
             GhiBtn.Enabled = true;
         }
 
         private void XoaBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DataRowView drv = ((DataRowView)bdsPN[bdsPN.Position]);
-            String maNhanVien = drv["MANV"].ToString();
-            if (Program.username != maNhanVien)
-            {
-                MessageBox.Show("Bạn không được xóa phiếu nhập không phải do mình tạo", "Thông báo", MessageBoxButtons.OK);
-                return;
-            }
-
             try
             {
                 if (CheDo)
                 {
-                    if (bdsCTPN.Count > 0)
+                    DataRowView drv = ((DataRowView)bdsPX[bdsPX.Position]);
+                    String maNhanVien = drv["MANV"].ToString();
+                    if (Program.username != maNhanVien)
                     {
-                        MessageBox.Show("Không thể xóa phiếu nhập vì có chi tiết phiếu nhập", "Thông báo", MessageBoxButtons.OK);
+                        MessageBox.Show("Không xóa chi tiết phiếu xuất không phải do mình tạo", "Thông báo", MessageBoxButtons.OK);
                         return;
                     }
-                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu nhập có mã: " + MaPNTb.Text + " không?", "Thông báo",
+
+                    if (bdsCTPX.Count > 0)
+                    {
+                        MessageBox.Show("Không thể xóa vì có chi tiết phiếu xuất", "Thông báo", MessageBoxButtons.OK);
+                        return;
+                    }
+
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu xuất có mã: " + MaPXTb.Text + " không?", "Thông báo",
                         MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        String Mapn = MaPNTb.Text;
-                        bdsPN.RemoveCurrent();
-
-                        this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-                        this.phieuNhapTableAdapter.Update(this.DataSet.PhieuNhap);
+                        String Mapx = MaPXTb.Text;
+                        bdsPX.RemoveCurrent();
+                        this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.phieuXuatTableAdapter.Update(this.DataSet.PhieuXuat);
 
                         MessageBox.Show("Xóa dữ liệu thành công!");
 
-                        String sql = "declare @result int\r\nexec @result = sp_KiemTraMaPhieuNhap '" + Mapn + "'\r\nselect @result";
+                        String sql = "declare @result int\r\nexec @result = sp_KiemTraMaPhieuXuat '" + Mapx + "'\r\nselect @result";
                         while (true)
                         {
                             int reader = Program.ExecSqlScalar(sql);
-                            Console.WriteLine(reader);
-                            Console.WriteLine(MaPNTb.Text);
                             if (reader == -1 || reader == 1)
                             {
                                 Thread.Sleep(100);
@@ -434,21 +463,23 @@ namespace QLVT_DATHANG
                 }
                 else
                 {
-                    drv = ((DataRowView)bdsPN[bdsPN.Position]);
-                    maNhanVien = drv["MANV"].ToString();
+                    DataRowView drv = ((DataRowView)bdsCTPX[bdsCTPX.Position]);
+                    String maNhanVien = drv["MANV"].ToString();
                     if (Program.username != maNhanVien)
                     {
-                        MessageBox.Show("Bạn không xóa chi tiết phiếu nhập không phải do mình tạo", "Thông báo", MessageBoxButtons.OK);
+                        MessageBox.Show("Bạn không xóa chi tiết đơn hàng trên phiếu không phải do mình tạo", "Thông báo", MessageBoxButtons.OK);
                         return;
                     }
 
-                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa chi tiết phiếu nhập có mã: " + MaPNCTTb.Text + " không?", "Thông báo",
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa chi tiết đơn hàng có mã: " + MaCTPXTb.Text + " không?", "Thông báo",
                             MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        bdsCTPN.RemoveCurrent();
+                        String Mactpx = MaCTPXTb.Text;
+                        String Mavt = MaCTVTTb.Text;
+                        bdsCTPX.RemoveCurrent();
                         MessageBox.Show("Xóa dữ liệu thành công!");
 
-                        String sql = "declare @result int\r\nexec @result = sp_KiemTraChiTietPhieuNhap '" + MaPNCTTb.Text + "', " + "'" + MaVTTb.Text + "' " + "\r\nselect @result";
+                        String sql = "declare @result int\r\nexec @result = sp_KiemTraChiTietPhieuXuat '" + Mactpx + "', " + "'" + Mavt + "' " + "\r\nselect @result";
                         while (true)
                         {
                             int reader = Program.ExecSqlScalar(sql);
@@ -476,6 +507,11 @@ namespace QLVT_DATHANG
             }
         }
 
+        private void ThoatBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Dispose();
+        }
+
         private void GhiBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (dangThemMoi)
@@ -489,7 +525,7 @@ namespace QLVT_DATHANG
                             return;
                         }
 
-                        String sql = "declare @result int\r\nexec @result = sp_KiemTraMaPhieuNhap '" + MaPNTb.Text + "'\r\nselect @result";
+                        String sql = "declare @result int\r\nexec @result = sp_KiemTraMaPhieuXuat '" + MaPXTb.Text + "'\r\nselect @result";
                         int reader = Program.ExecSqlScalar(sql);
 
                         if (reader == 1)
@@ -498,14 +534,14 @@ namespace QLVT_DATHANG
                             return;
                         }
 
-                        String MaPN = "";
+                        String MaPX = "";
 
-                        DataRowView currentRow = (DataRowView)bdsPN.Current;
-                        bdsPN.EndEdit();
+                        DataRowView currentRow = (DataRowView)bdsPX.Current;
+                        bdsPX.EndEdit();
 
-                        MaPN = currentRow["MAPN"].ToString();
-                        this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-                        this.phieuNhapTableAdapter.Update(this.DataSet.PhieuNhap);
+                        MaPX = currentRow["MAPX"].ToString();
+                        this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.phieuXuatTableAdapter.Update(this.DataSet.PhieuXuat);
 
                         MessageBox.Show("Thêm dữ liệu thành công!");
 
@@ -525,9 +561,10 @@ namespace QLVT_DATHANG
                             }
                         }
 
-                        ViTriPN = bdsPN.Find("MAPN", MaPN);
-                        bdsPN.Position = ViTriPN;
+                        ViTriPX = bdsPX.Find("MAPX", MaPX);
+                        bdsPX.Position = ViTriPX;
                         dangThemMoi = false;
+                        MaPXTb.Enabled = false;
                     }
                     else
                     {
@@ -536,7 +573,7 @@ namespace QLVT_DATHANG
                             return;
                         }
 
-                        String sql = "declare @result int\r\nexec @result = sp_KiemTraChiTietPhieuNhap '" + MaPNCTTb.Text + "', " + "'" + MaVTTb.Text + "' " + "\r\nselect @result";
+                        String sql = "declare @result int\r\nexec @result = sp_KiemTraChiTietPhieuXuat '" + MaCTPXTb.Text + "', " + "'" + MaVTTb.Text + "' " + "\r\nselect @result";
                         int reader = Program.ExecSqlScalar(sql);
 
                         if (reader == 1)
@@ -545,25 +582,25 @@ namespace QLVT_DATHANG
                             return;
                         }
 
-                        if (int.Parse(SoLuongTb.Text) > int.Parse(SoLuongDDHTb.Text))
+                        if (int.Parse(SoLuongTb.Text) > int.Parse(SoLuongTonTb.Text))
                         {
                             MessageBox.Show("Không nhập quá số lượng đã đặt trên các vật tư trong đơn đặt", "Thông báo", MessageBoxButtons.OK);
                             return;
                         }
 
                         String MaVT = "";
-                        DataRowView currentRow = (DataRowView)bdsCTPN.Current;
-                        ((DataRowView)(bdsCTPN.Current))["MAPN"] = ((DataRowView)(bdsCTPN.Current))["MAPN"];
-                        bdsCTPN.EndEdit();
-                        bdsPN.EndEdit();
+                        DataRowView currentRow = (DataRowView)bdsCTPX.Current;
+                        ((DataRowView)(bdsCTPX.Current))["MAPX"] = ((DataRowView)(bdsCTPX.Current))["MAPX"];
+                        bdsCTPX.EndEdit();
+                        bdsPX.EndEdit();
 
                         MaVT = currentRow["MAVT"].ToString();
-                        this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                        this.cTPNTableAdapter.Update(this.DataSet.CTPN);
-                        this.phieuNhapTableAdapter.Update(this.DataSet.PhieuNhap);
+                        this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.cTPXTableAdapter.Update(this.DataSet.CTPX);
+                        this.phieuXuatTableAdapter.Update(this.DataSet.PhieuXuat);
 
                         MessageBox.Show("Thêm dữ liệu thành công!");
-                        string maVatTu = MaVTTb.Text.Trim();
+                        string maVatTu = MaCTVTTb.Text.Trim();
                         int soLuong = int.Parse(SoLuongTb.Text);
 
                         capNhatSoLuongVatTu(maVatTu, soLuong);
@@ -586,12 +623,12 @@ namespace QLVT_DATHANG
                         //ViTriCTDH = bdsCTDDH.Find("MAVT", MaVT);
                         //bdsCTDDH.Position = ViTriCTDH;
                         bool found = false;
-                        for (int i = 0; i < bdsCTPN.Count; i++)
+                        for (int i = 0; i < bdsCTPX.Count; i++)
                         {
-                            DataRowView row = (DataRowView)bdsCTPN[i];
+                            DataRowView row = (DataRowView)bdsCTPX[i];
                             if (row["MAVT"].ToString() == MaVT)
                             {
-                                ViTriCTPN = i;
+                                ViTriCTPX = i;
                                 found = true;
                                 break;
                             }
@@ -599,7 +636,7 @@ namespace QLVT_DATHANG
 
                         if (found)
                         {
-                            bdsCTPN.Position = ViTriCTPN;
+                            bdsCTPX.Position = ViTriCTPX;
                         }
                         dangThemMoi = false;
                     }
@@ -613,7 +650,7 @@ namespace QLVT_DATHANG
             }
             else
             {
-                DataRowView drv = ((DataRowView)bdsPN[bdsPN.Position]);
+                DataRowView drv = ((DataRowView)bdsPX[bdsPX.Position]);
                 String maNhanVien = drv["MANV"].ToString();
 
                 if (Program.username != maNhanVien)
@@ -625,36 +662,36 @@ namespace QLVT_DATHANG
                 {
                     if (CheDo)
                     {
-                        String MaPN = "";
-                        DataRowView currentRow = (DataRowView)bdsPN.Current;
+                        String MaPX = "";
+                        DataRowView currentRow = (DataRowView)bdsPX.Current;
                         this.Validate();
-                        MaPN = (string)currentRow["MAPN"];
-                        bdsPN.EndEdit();
-                        this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
-                        this.phieuNhapTableAdapter.Update(this.DataSet.PhieuNhap);
+                        MaPX = (string)currentRow["MAPX"];
+                        bdsPX.EndEdit();
+                        this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.phieuXuatTableAdapter.Update(this.DataSet.PhieuXuat);
 
                         MessageBox.Show("Cập nhật dữ liệu thành công!");
 
                         LamMoiBtn.PerformClick();
 
-                        ViTriPN = bdsCTPN.Find("MAPN", MaPN);
-                        bdsPN.Position = ViTriPN;
+                        ViTriPX = bdsPX.Find("MAPX", MaPX);
+                        bdsPX.Position = ViTriPX;
                     }
                     else
                     {
-                        if (int.Parse(SoLuongTb.Text) > int.Parse(SoLuongDDHTb.Text))
+                        if (int.Parse(SoLuongTb.Text) > int.Parse(SoLuongTonTb.Text))
                         {
                             MessageBox.Show("Không nhập quá số lượng đã đặt trên các vật tư trong đơn đặt", "Thông báo", MessageBoxButtons.OK);
                             return;
                         }
 
                         String MaVT = "";
-                        DataRowView currentRow = (DataRowView)bdsCTPN.Current;
+                        DataRowView currentRow = (DataRowView)bdsCTPX.Current;
                         this.Validate();
                         MaVT = currentRow["MAVT"].ToString();
-                        bdsCTPN.EndEdit();
-                        this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                        this.cTPNTableAdapter.Update(this.DataSet.CTPN);
+                        bdsCTPX.EndEdit();
+                        this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.cTPXTableAdapter.Update(this.DataSet.CTPX);
 
                         MessageBox.Show("Cập nhật dữ liệu thành công!");
 
@@ -663,12 +700,12 @@ namespace QLVT_DATHANG
                         //ViTriCTDH = bdsCTDDH.Find("MAVT", MaVT);
                         //bdsCTDDH.Position = ViTriCTDH;
                         bool found = false;
-                        for (int i = 0; i < bdsCTPN.Count; i++)
+                        for (int i = 0; i < bdsCTPX.Count; i++)
                         {
-                            DataRowView row = (DataRowView)bdsCTPN[i];
+                            DataRowView row = (DataRowView)bdsCTPX[i];
                             if (row["MAVT"].ToString() == MaVT)
                             {
-                                ViTriCTPN = i;
+                                ViTriCTPX = i;
                                 found = true;
                                 break;
                             }
@@ -676,7 +713,7 @@ namespace QLVT_DATHANG
 
                         if (found)
                         {
-                            bdsCTPN.Position = ViTriCTPN;
+                            bdsCTPX.Position = ViTriCTPX;
                         }
                     }
 
@@ -688,14 +725,6 @@ namespace QLVT_DATHANG
 
                     return;
                 }
-            }
-        }
-
-        private void MaPNCTTb_TextChanged(object sender, EventArgs e)
-        {
-            if (MaPNTb != null)
-            {
-                MaPNCTTb.Text = MaPNTb.Text;
             }
         }
 
@@ -712,42 +741,50 @@ namespace QLVT_DATHANG
             {
                 ThemBtn.Enabled = false;
                 XoaBtn.Enabled = false;
-                PhieuNhapGc.Enabled = false;
+                PhieuXuatGc.Enabled = false;
             }
             else
             {
                 ThemBtn.Enabled = false;
                 XoaBtn.Enabled = false;
-                CTPNGc.Enabled = false;
+                CTPXGc.Enabled = false;
             }
         }
 
-        private void PhieuNhapGc_Click(object sender, EventArgs e)
+        private void MaVTTb_TextChanged(object sender, EventArgs e)
         {
-            if ((DataRowView)bdsPN.Current != null)
-                ViTriPN = bdsPN.Position;
-        }
-
-        private void CTPNGc_Click(object sender, EventArgs e)
-        {
-            if ((DataRowView)bdsCTPN.Current != null)
-                ViTriCTPN = bdsCTPN.Position;
-        }
-
-        private void MaSoDDHTb_TextChanged(object sender, EventArgs e)
-        {
-            if (MaSoDDHTb != null)
+            if (MaVTTb != null)
             {
-                int VitriMaCTDDH = bdsCTDDH.Find("MasoDDH", MaSoDDHTb.Text);
-                if (VitriMaCTDDH != -1)
+                int ViTriMaCTVT = bdsVT.Find("MAVT", MaVTTb.Text);
+                if (ViTriMaCTVT != -1)
                 {
-                    DataRowView currentRow = (DataRowView)bdsCTDDH[VitriMaCTDDH];
-                    MaSoDDHCTTb.Text = (string)currentRow["MasoDDH"];
-                    MaVTDDHTb.Text = (string)currentRow["MAVT"];
-                    SoLuongDDHTb.Text = currentRow["SOLUONG"].ToString();
-                    DonGiaTb.Text = currentRow["DONGIA"].ToString();
+                    DataRowView currentRow = (DataRowView)bdsVT[ViTriMaCTVT];
+                    MaCTVTTb.Text = (string)currentRow["MAVT"];
+                    TenVTTb.Text = (string)currentRow["TENVT"];
+                    DvtTb.Text = (string)currentRow["DVT"];
+                    SoLuongTonTb.Text = currentRow["SOLUONGTON"].ToString();
                 }
             }
+        }
+
+        private void MaPXTb_TextChanged(object sender, EventArgs e)
+        {
+            //if (MaPXTb != null)
+            //{
+            //    MaCTPXTb.Text = MaPXTb.Text;
+            //}
+        }
+
+        private void PhieuXuatGc_Click(object sender, EventArgs e)
+        {
+            if ((DataRowView)bdsPX.Current != null)
+                ViTriPX = bdsPX.Position;
+        }
+
+        private void CTPXGc_Click(object sender, EventArgs e)
+        {
+            if ((DataRowView)bdsCTPX.Current != null)
+                ViTriCTPX = bdsCTPX.Position;
         }
     }
 }

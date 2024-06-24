@@ -69,10 +69,14 @@ namespace QLVT_DATHANG
                     ChonKhoBtn.Enabled = false;
                     ChonVatTuBtn.Enabled = false;
                     break;
-                //case "CHINHANH":
-                //case "USER":
-                //    setEnableOptions(true);
-                //    break;
+                case "CHINHANH":
+                    setEnableOptions(true);
+                    break;
+                case "USER":
+                    setEnableOptions(true);
+                    ThemBtn.Enabled = false;
+                    XoaBtn.Enabled = false;
+                    break;
                 default:
                     break;
             }

@@ -16,6 +16,11 @@ namespace QLVT_DATHANG.SubForm
     {
         private FormHoatDongNhanVien formHoatDongNhanVien = new FormHoatDongNhanVien();
 
+        public FormChonNhanVien()
+        {
+            InitializeComponent();
+        }
+
         public FormChonNhanVien(FormHoatDongNhanVien f)
         {
             this.formHoatDongNhanVien = f;
@@ -84,6 +89,12 @@ namespace QLVT_DATHANG.SubForm
             this.formHoatDongNhanVien.HoTenTb1.Text = hoTen;
             this.formHoatDongNhanVien.NgaySinhTb1.Text = ngaySinh;
             this.formHoatDongNhanVien.DiaChiTb1.Text = diaChi;
+
+            Program.maNhanVienDuocChon = maNhanVien;
+            Program.hoTen = hoTen;
+            //Console.WriteLine(Program.hoTen);
+            Program.ngaySinh = ngaySinh;
+            Program.diaChi = diaChi;
 
             this.Close();
         }

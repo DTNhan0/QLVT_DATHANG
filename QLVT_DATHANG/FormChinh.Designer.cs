@@ -134,11 +134,13 @@ namespace QLVT_DATHANG
             // TaoTKBtn
             // 
             this.TaoTKBtn.Caption = "TẠO TÀI KHOẢN";
+            this.TaoTKBtn.Enabled = false;
             this.TaoTKBtn.Id = 2;
             this.TaoTKBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("TaoTKBtn.ImageOptions.Image")));
             this.TaoTKBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("TaoTKBtn.ImageOptions.LargeImage")));
             this.TaoTKBtn.Name = "TaoTKBtn";
             this.TaoTKBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.TaoTKBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.TaoTKBtn_ItemClick);
             // 
             // DangXuatBtn
             // 
@@ -218,6 +220,7 @@ namespace QLVT_DATHANG
             this.PhieuXuatBtn.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("PhieuXuatBtn.ImageOptions.Image")));
             this.PhieuXuatBtn.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("PhieuXuatBtn.ImageOptions.LargeImage")));
             this.PhieuXuatBtn.Name = "PhieuXuatBtn";
+            this.PhieuXuatBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.PhieuXuatBtn_ItemClick);
             // 
             // barButtonItem1
             // 
@@ -521,5 +524,6 @@ namespace QLVT_DATHANG
         public ToolStripStatusLabel maNVSsl { get => MaNVSsl; set => MaNVSsl = value; }
         public ToolStripStatusLabel hoTenSsl { get => HoTenSsl; set => HoTenSsl = value; }
         public ToolStripStatusLabel nhomSsl { get => NhomSsl; set => NhomSsl = value; }
+        public BarButtonItem TaoTKBtn1 { get => TaoTKBtn; set => TaoTKBtn = value; }
     }
 }

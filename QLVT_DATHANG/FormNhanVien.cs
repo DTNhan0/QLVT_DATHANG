@@ -20,6 +20,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Threading;
 using DevExpress.Utils.Extensions;
 using DevExpress.Utils.Helpers;
+using QLVT_DATHANG.SubForm;
+using QLTVT.SubForm;
 
 namespace QLVT_DATHANG
 {
@@ -79,8 +81,12 @@ namespace QLVT_DATHANG
                     ChiNhanhCb.Enabled = true;
                     break;
                 case "CHINHANH":
+                    setEnableOptions(true);
+                    break;
                 case "USER":
                     setEnableOptions(true);
+                    ThemBtn.Enabled = false;
+                    XoaBtn.Enabled = false;
                     break;
                 default:
                     break;
@@ -384,6 +390,98 @@ namespace QLVT_DATHANG
 
         private void ChuyenCNBtn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            int viTriHienTai = bdsNV.Position;
+            bool trangThaiXoa = (bool)((DataRowView)bdsNV[viTriHienTai])["TrangThaiXoa"];
+
+            string maNhanVien = ((DataRowView)(bdsNV[viTriHienTai]))["MANV"].ToString();
+
+            if (maNhanVien == Program.username)
+            {
+                MessageBox.Show("Không thể chuyển chính người đang đăng nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (trangThaiXoa)
+            {
+                MessageBox.Show("Nhân viên này không có ở chi nhánh này", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Form f = this.CheckExists(typeof(FormChuyenChiNhanh));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            FormChuyenChiNhanh form = new FormChuyenChiNhanh();
+            form.Show();
+
+            form.branchTransfer = new FormChuyenChiNhanh.MyDelegate(chuyenChiNhanh);
+        }
+
+        public void chuyenChiNhanh(String chiNhanh)
+        {
+            if (Program.servername == chiNhanh)
+            {
+                MessageBox.Show("Hãy chọn chi nhánh khác chi nhánh bạn đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+
+            /*Step 2*/
+            String maChiNhanhHienTai = "";
+            String maChiNhanhMoi = "";
+            int viTriHienTai = bdsNV.Position;
+            String maNhanVien = ((DataRowView)bdsNV[viTriHienTai])["MANV"].ToString();
+
+            if (chiNhanh.Contains("1"))
+            {
+                maChiNhanhHienTai = "CN2";
+                maChiNhanhMoi = "CN1";
+            }
+            else if (chiNhanh.Contains("2"))
+            {
+                maChiNhanhHienTai = "CN1";
+                maChiNhanhMoi = "CN2";
+            }
+            else
+            {
+                MessageBox.Show("Mã chi nhánh không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Console.WriteLine("Ma chi nhanh hien tai : " + maChiNhanhHienTai);
+            Console.WriteLine("Ma chi nhanh Moi : " + maChiNhanhMoi);
+
+
+            Program.serverNameLeft = chiNhanh; /*Lấy tên chi nhánh tới để làm tính năng hoàn tác*/
+            Console.WriteLine("Ten server con lai" + Program.serverNameLeft);
+
+
+
+            /*Step 4*/
+            String cauTruyVan = "EXEC sp_ChuyenChiNhanh " + maNhanVien + ",'" + maChiNhanhMoi + "'";
+            Console.WriteLine("Cau Truy Van: " + cauTruyVan);
+
+            SqlCommand sqlcommand = new SqlCommand(cauTruyVan, Program.conn);
+            try
+            {
+                Program.myReader = Program.ExecSqlDataReader(cauTruyVan);
+                MessageBox.Show("Chuyển chi nhánh thành công", "thông báo", MessageBoxButtons.OK);
+
+                if (Program.myReader == null)
+                {
+                    return;/*khong co ket qua tra ve thi ket thuc luon*/
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("thực thi database thất bại!\n\n" + ex.Message, "thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine(ex.Message);
+                return;
+            }
+            this.nhanVienTableAdapter.Update(this.DataSet.NhanVien);
+
 
         }
 
@@ -424,6 +522,13 @@ namespace QLVT_DATHANG
                 this.phieuXuatTableAdapter.Fill(this.DataSet.PhieuXuat);
 
             }
+        }
+        private Form CheckExists(Type ftype)
+        {
+            foreach (Form f in this.MdiChildren)
+                if (f.GetType() == ftype)
+                    return f;
+            return null;
         }
 
         private bool CheckDataInput()

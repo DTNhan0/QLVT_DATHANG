@@ -3,6 +3,7 @@ using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraTabbedMdi;
+using QLTVT;
 using QLVT_DATHANG.ReportForm;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,7 @@ namespace QLVT_DATHANG
 
         private void DangXuatBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+            this.TaoTKBtn.Enabled = false;
             logout();
             this.setEnableOptions(false);
             Form f = this.CheckExists(typeof(FormDangNhap));
@@ -262,6 +264,36 @@ namespace QLVT_DATHANG
                 FormPhieuNhap formPhieuNhap = new FormPhieuNhap();
                 formPhieuNhap.MdiParent = this;
                 formPhieuNhap.Show();
+            }
+        }
+
+        private void PhieuXuatBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(FormPhieuXuat));
+            if (form != null)
+            {
+                form.Activate();
+            }
+            else
+            {
+                FormPhieuXuat formPhieuXuat = new FormPhieuXuat();
+                formPhieuXuat.MdiParent = this;
+                formPhieuXuat.Show();
+            }
+        }
+
+        private void TaoTKBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form f = this.CheckExists(typeof(FormTaoTaiKhoan));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                FormTaoTaiKhoan form = new FormTaoTaiKhoan();
+                //form.MdiParent = this;
+                form.Show();
             }
         }
     }

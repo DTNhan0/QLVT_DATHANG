@@ -1,0 +1,11 @@
+CREATE PROCEDURE sp_KiemTraChiTietPhieuXuat
+	@MaPX nchar(8),
+	@MaVT nchar(4)
+AS
+BEGIN
+	if( EXISTS( SELECT * FROM CTPX AS P WHERE P.MAPX = @MaPX AND P.MAVT = @MaVT))
+		RETURN 1;-- ton tai o chi nhanh hien tai
+	ELSE IF( EXISTS( SELECT * FROM LINK0.QLVT_DATHANG.DBO.CTPX AS PX WHERE PX.MAPX = @MaPX AND PX.MAVT = @MaVT) )
+		RETURN 1;-- ton tai o chi nhanh khac 
+	RETURN 0;
+END	

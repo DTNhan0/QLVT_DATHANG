@@ -67,8 +67,12 @@ namespace QLVT_DATHANG
                     ChiNhanhCb.Enabled = true;
                     break;
                 case "CHINHANH":
+                    setEnableOptions(true);
+                    break;
                 case "USER":
                     setEnableOptions(true);
+                    ThemBtn.Enabled = false;
+                    XoaBtn.Enabled = false;
                     break;
                 default:
                     break;
