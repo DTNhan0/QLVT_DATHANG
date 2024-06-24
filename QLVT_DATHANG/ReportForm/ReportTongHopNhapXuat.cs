@@ -23,6 +23,8 @@ namespace QLVT_DATHANG.ReportForm
             this.DenNgayLbl.Text = ToDate;
 
             this.sqlDataSource1.Fill();
+            TenNV.Text = Program.mHoten;
+            NgayXuatLbl.Text = DateTime.Now.ToString();
         }
 
     }

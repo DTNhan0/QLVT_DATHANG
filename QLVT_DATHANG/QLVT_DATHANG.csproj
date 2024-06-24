@@ -330,7 +330,6 @@
     <EmbeddedResource Include="SubForm\FormChonVatTu.resx">
       <DependentUpon>FormChonVatTu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForm\FormChuyenChiNhanh.resx" />
     <None Include="App.config" />
     <None Include="DataSet.xsc">
       <DependentUpon>DataSet.xsd</DependentUpon>

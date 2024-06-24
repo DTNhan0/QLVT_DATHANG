@@ -14,6 +14,8 @@ namespace QLVT_DATHANG.ReportForm
             this.sqlDataSource1.Connection.ConnectionString = Program.connstr;
             this.sqlDataSource1.Fill();
             ChiNhanhLbl.Text = formDanhSachNhanVien.ChiNhanh.ToUpper();
+            TenNV.Text = Program.mHoten;
+            NgayXuatLbl.Text = DateTime.Now.ToString();
         }
 
     }

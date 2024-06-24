@@ -38,6 +38,9 @@ namespace QLVT_DATHANG.ReportForm
             this.sqlDataSource1.Queries[0].Parameters[2].Value = fromDate;
             this.sqlDataSource1.Queries[0].Parameters[3].Value = toDate;
 
+            TenNV.Text = Program.mHoten;
+            NgayXuatLbl.Text = DateTime.Now.ToString();
+
             try
             {
                 this.sqlDataSource1.Fill();

@@ -24,6 +24,8 @@ namespace QLVT_DATHANG.ReportForm
             DenNgayLbl.Text = formHoatDongNhanVien.ToDateDE1.Text;
 
             this.sqlDataSource1.Fill();
+            TenNV.Text = Program.mHoten;
+            NgayXuatLbl.Text = DateTime.Now.ToString();
         }
 
     }

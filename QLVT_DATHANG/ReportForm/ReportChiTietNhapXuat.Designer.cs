@@ -65,6 +65,10 @@
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
+            this.NgayXuatLbl = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.TenNV = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -159,6 +163,10 @@
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.NgayXuatLbl,
+            this.xrLabel1,
+            this.TenNV,
+            this.xrLabel5,
             this.xrLabel8,
             this.ToDateLbl,
             this.xrLabel6,
@@ -168,7 +176,7 @@
             this.xrLabel3,
             this.xrLabel4,
             this.ChiNhanhLbl});
-            this.PageHeader.HeightF = 158.3333F;
+            this.PageHeader.HeightF = 185.4166F;
             this.PageHeader.Name = "PageHeader";
             // 
             // xrLabel8
@@ -428,6 +436,64 @@
             this.xrLabel9.Text = "NULL";
             this.xrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
+            // NgayXuatLbl
+            // 
+            this.NgayXuatLbl.AutoWidth = true;
+            this.NgayXuatLbl.CanGrow = false;
+            this.NgayXuatLbl.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.NgayXuatLbl.LocationFloat = new DevExpress.Utils.PointFloat(313.5417F, 152.4166F);
+            this.NgayXuatLbl.Multiline = true;
+            this.NgayXuatLbl.Name = "NgayXuatLbl";
+            this.NgayXuatLbl.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.NgayXuatLbl.SizeF = new System.Drawing.SizeF(59.37506F, 23F);
+            this.NgayXuatLbl.StylePriority.UseFont = false;
+            this.NgayXuatLbl.StylePriority.UseTextAlignment = false;
+            this.NgayXuatLbl.Text = "NULL";
+            this.NgayXuatLbl.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.NgayXuatLbl.TextFormatString = "{0:dd/MM/yyyy}";
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.AutoWidth = true;
+            this.xrLabel1.CanGrow = false;
+            this.xrLabel1.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(244.7916F, 152.4166F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(68.75006F, 23F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.Text = "Ngày xuất:";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel1.TextFormatString = "{0:dd/MM/yyyy}";
+            // 
+            // TenNV
+            // 
+            this.TenNV.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.TenNV.LocationFloat = new DevExpress.Utils.PointFloat(77.7215F, 152.4166F);
+            this.TenNV.Multiline = true;
+            this.TenNV.Name = "TenNV";
+            this.TenNV.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.TenNV.SizeF = new System.Drawing.SizeF(113.5417F, 23F);
+            this.TenNV.StylePriority.UseFont = false;
+            this.TenNV.StylePriority.UseTextAlignment = false;
+            this.TenNV.Text = "NULL";
+            this.TenNV.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.Font = new DevExpress.Drawing.DXFont("Arial", 8F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(3.763135F, 152.4166F);
+            this.xrLabel5.Multiline = true;
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(73.95837F, 23F);
+            this.xrLabel5.StylePriority.UseFont = false;
+            this.xrLabel5.StylePriority.UseTextAlignment = false;
+            this.xrLabel5.Text = "Người xuất:";
+            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
             // ReportChiTietNhapXuat
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -482,5 +548,9 @@
         private DevExpress.XtraReports.UI.GroupFooterBand GroupFooter1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
+        private DevExpress.XtraReports.UI.XRLabel NgayXuatLbl;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+        private DevExpress.XtraReports.UI.XRLabel TenNV;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
     }
 }

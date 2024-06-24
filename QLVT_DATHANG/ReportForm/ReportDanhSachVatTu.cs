@@ -11,6 +11,8 @@ namespace QLVT_DATHANG.ReportForm
         public ReportDanhSachVatTu()
         {
             InitializeComponent();
+            TenNV.Text = Program.mHoten;
+            NgayXuatLbl.Text = DateTime.Now.ToString();
         }
 
     }
