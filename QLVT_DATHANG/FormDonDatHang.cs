@@ -726,13 +726,11 @@ namespace QLVT_DATHANG
             {
                 ThemBtn.Enabled = false;
                 XoaBtn.Enabled = false;
-                DatHangGc.Enabled = false;
             }
             else
             {
                 ThemBtn.Enabled = false;
                 XoaBtn.Enabled = false;
-                CTDDHGc.Enabled = false;
             }
         }
 

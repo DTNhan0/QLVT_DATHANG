@@ -712,13 +712,11 @@ namespace QLVT_DATHANG
             {
                 ThemBtn.Enabled = false;
                 XoaBtn.Enabled = false;
-                PhieuNhapGc.Enabled = false;
             }
             else
             {
                 ThemBtn.Enabled = false;
                 XoaBtn.Enabled = false;
-                CTPNGc.Enabled = false;
             }
         }
 
